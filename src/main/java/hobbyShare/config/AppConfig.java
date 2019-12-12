@@ -6,7 +6,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @ComponentScan(
-    basePackages = "hobbyShare" ,
+    basePackages = "hobbyShare",
     excludeFilters = {
     @Filter(type = FilterType.REGEX,pattern = "hobbyShare.web.*")
     }
@@ -14,5 +14,3 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc 
 public class AppConfig {
 }
-
-

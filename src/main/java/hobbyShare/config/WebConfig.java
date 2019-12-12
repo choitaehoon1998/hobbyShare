@@ -25,7 +25,6 @@ public class WebConfig implements WebMvcConfigurer{
     return mr; 
   }
   
-  //
   @Bean
   public ViewResolver viewResolver() {
     InternalResourceViewResolver vr = new InternalResourceViewResolver(

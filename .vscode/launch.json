@@ -2,6 +2,16 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD
+=======
+            "name": "CodeLens (Launch) - member",
+            "request": "launch",
+            "mainClass": "com.hobbyshare.domain.member",
+            "projectName": "hobbyshare"
+        },
+        {
+            "type": "java",
+>>>>>>> master
             "name": "CodeLens (Launch) - DemoApplication",
             "request": "launch",
             "mainClass": "com.hobbyshare.DemoApplication",

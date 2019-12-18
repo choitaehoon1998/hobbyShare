@@ -8,6 +8,6 @@
  
 <body>
     <div id="root"></div>
-    <script src="/js/react/${pageName}.bundle.js"></script>
+    <script src="/src/main/webapp/src/main/webapp/js/react/${pageName}.bundle.js"></script>
 </body>
 </html>

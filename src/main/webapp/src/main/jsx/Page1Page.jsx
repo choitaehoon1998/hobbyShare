@@ -1,4 +1,4 @@
-import 'C:/Users/hahhh/git/Writing-crocodile/hobbyshare/src/main/webapp/css/custom.css';
+import '../../../css/custom.css';
  
 import React from 'react';
 import ReactDOM from 'react-dom';

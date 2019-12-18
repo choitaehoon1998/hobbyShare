@@ -2,13 +2,11 @@ spring:
     http:
         encoding:
             charset: UTF-8
-    mvc:
-        view:
-            prefix: /jsp/
-            suffix: .jsp
     output:
         ansi:
             enabled: always
 server:
+    port: 8888
     tomcat:
         uri-encoding: UTF-8
+    

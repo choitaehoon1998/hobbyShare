@@ -10,7 +10,8 @@ module.exports = {
     cache: true,
     output: {
         path: __dirname,
-        filename: './src/main/webapp/js/react/[name].bundle.js'
+       /* filename: './src/main/webapp/js/react/[name].bundle.js' */
+        filename: './src/main/webapp/js/react/[name].js'
     },
     mode: 'none',
     module: {

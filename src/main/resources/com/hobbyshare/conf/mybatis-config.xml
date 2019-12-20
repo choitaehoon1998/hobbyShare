@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-  <properties resource="com/greenright/conf/jdbc.properties"></properties>
+  <properties resource="com/hobbyshare/conf/jdbc.properties"></properties>
   
   <typeAliases>
-    <package name="com.greenright.domain"/>
+    <package name="com.hobbyshare.domain"/>
   </typeAliases>
   
   <environments default="development">

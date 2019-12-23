@@ -14,5 +14,9 @@ public class ProductController {
   public String form(HttpSession session) { 
     return "product/form";
   }
+  @GetMapping("manage")
+  public void manage(HttpSession session) {
+    session.getAttribute("maeand");
 
+  }
 }

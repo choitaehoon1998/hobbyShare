@@ -1,4 +1,4 @@
-package com.hobbyShare.config;
+package com.hobbyshare.config;
 
 import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;

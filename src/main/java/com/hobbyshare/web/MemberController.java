@@ -1,4 +1,4 @@
-package com.hobbyShare.web;
+package com.hobbyshare.web;
 
 public class MemberController {
 

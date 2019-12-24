@@ -1,4 +1,4 @@
-package com.hobbyShare.web.json;
+package com.hobbyshare.web.json;
 
 public class JsonResult {
 

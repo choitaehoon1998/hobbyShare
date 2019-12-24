@@ -1,4 +1,4 @@
-package com.hobbyShare.config;
+package com.hobbyshare.config;
 
 import javax.sql.DataSource;
 import org.apache.ibatis.logging.LogFactory;

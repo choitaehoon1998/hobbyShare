@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement 
 
-@PropertySource("classpath:com/hobbyShare/conf/jdbc.properties")
+@PropertySource("classpath:com/hobbyshare/conf/jdbc.properties")
 public class DatabaseConfig {
   
   @Value("${jdbc.driver}") String jdbcDriver;

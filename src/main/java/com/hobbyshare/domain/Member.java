@@ -1,4 +1,4 @@
-package com.hobbyShare.domain;
+package com.hobbyshare.domain;
 
 import java.io.Serializable;
 

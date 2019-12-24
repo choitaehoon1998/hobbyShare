@@ -1,4 +1,4 @@
-package com.hobbyShare.config;
+package com.hobbyshare.config;
 
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement 
 
-@PropertySource("classpath:com/hobbyShare/conf/jdbc.properties")
+@PropertySource("classpath:com/hobbyshare/conf/jdbc.properties")
 public class DatabaseConfig {
   
   @Value("${jdbc.driver}") String jdbcDriver;

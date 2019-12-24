@@ -1,4 +1,4 @@
-package com.hobbyShare.config;
+package com.hobbyshare.config;
 
 import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -31,6 +31,6 @@ public class AppWebApplicationInitializer
   protected Filter[] getServletFilters() {
     return new Filter[] {
         new CharacterEncodingFilter("UTF-8")
-        /*, new AuthFilter()*/};
+        };
   }
 }

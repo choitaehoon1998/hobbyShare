@@ -1,4 +1,4 @@
-package com.hobbyShare.filter;
+package com.hobbyshare.filter;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,7 +31,7 @@ public class AuthFilter implements Filter {
     HttpServletRequest httpReq = (HttpServletRequest) request;
     HttpServletResponse httpResp = (HttpServletResponse) response;
     
-    String servletPath = httpReq.getServletPath();
+   // String servletPath = httpReq.getServletPath();
     String pathInfo = httpReq.getPathInfo();
     for (String p : path) {
       // web.xml에 지정된 경로라면, 로그인 여부를 검사한다.

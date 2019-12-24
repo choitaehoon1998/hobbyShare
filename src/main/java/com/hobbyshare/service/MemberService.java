@@ -1,4 +1,4 @@
-package com.hobbyShare.service;
+package com.hobbyshare.service;
 
 public interface MemberService {
 

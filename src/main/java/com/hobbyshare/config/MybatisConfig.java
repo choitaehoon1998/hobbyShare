@@ -1,4 +1,4 @@
-package com.hobbyShare.config;
+package com.hobbyshare.config;
 
 import javax.sql.DataSource;
 import org.apache.ibatis.logging.LogFactory;
@@ -22,7 +22,7 @@ public class MybatisConfig {
     sqlSessionFactoryBean.setDataSource(dataSource);
     sqlSessionFactoryBean.setTypeAliasesPackage("com.hobbyShare.domain");
     sqlSessionFactoryBean.setMapperLocations(
-        appCtx.getResources("classpath:com/hobbyShare/mapper/*Mapper.xml"));
+        appCtx.getResources("classpath:com/hobbyshare/mapper/*Mapper.xml"));
     
     return sqlSessionFactoryBean.getObject();
   }

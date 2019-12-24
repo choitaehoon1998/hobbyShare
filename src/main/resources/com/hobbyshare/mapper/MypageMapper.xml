@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hobbyshare.dao.MypageDao">
+
+  <resultMap type="Member" id="MemberMap">
+    <id column="member_id" property="memberNo"/>
+    <result column="nickname" property="nickName"/>
+    <result column="basic_address" property="basicAddress"/>
+    <result column="detail_address" property="detailAddress"/>
+    <result column="division_no" property="divisionNo"/>
+  </resultMap>
+  
+  <select id="login" parameterType="map" resultMap="MemberMap">
+    select * from member where email=#{email} and password=#{pw}
+  </select>
+  
+  <update id="updateNickName" parameterType="Member">
+    update member set nickname="${nickName}" where member_id="${memberNo}"
+  </update>
+  
+  <update id="updateName" parameterType="Member">
+    update member set name="${name}" where member_id="${memberNo}"
+  </update>
+  
+  <update id="updatePw" parameterType="Member">
+    update member set password=password("${password}") where member_id="${memberNo}"
+  </update>
+  
+</mapper>

@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - member",
+            "request": "launch",
+            "mainClass": "com.hobbyshare.domain.member",
+            "projectName": "hobbyshare"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DemoApplication",
+            "request": "launch",
+            "mainClass": "com.hobbyshare.DemoApplication",
+            "projectName": "hobbyshare"
+        }
+    ]
+}

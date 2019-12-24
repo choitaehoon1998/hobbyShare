@@ -8,7 +8,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-@MapperScan("com.hobbyShare.dao")
+@MapperScan("com.hobbyshare.dao")
 public class MybatisConfig {
   
   @Bean
@@ -20,9 +20,9 @@ public class MybatisConfig {
     
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSource);
-    sqlSessionFactoryBean.setTypeAliasesPackage("com.hobbyShare.domain");
+    sqlSessionFactoryBean.setTypeAliasesPackage("com.hobbyshare.domain");
     sqlSessionFactoryBean.setMapperLocations(
-        appCtx.getResources("classpath:com/hobbyShare/mapper/*Mapper.xml"));
+        appCtx.getResources("classpath:com/hobbyshare/mapper/*Mapper.xml"));
     
     return sqlSessionFactoryBean.getObject();
   }

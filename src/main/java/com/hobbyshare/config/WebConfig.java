@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.util.UrlPathHelper;
 
-@ComponentScan("com.hobbyShare.web")
+@ComponentScan("com.hobbyshare.web")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 

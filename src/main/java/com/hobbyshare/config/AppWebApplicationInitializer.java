@@ -1,22 +1,12 @@
-package com.hobbyshare.config;
+package com.hobbyShare.config;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
-import org.springframework.context.annotation.Configuration;
+import javax.servlet.Filter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-@Configuration
-public class AppWebApplicationInitializer
-    extends AbstractAnnotationConfigDispatcherServletInitializer {
-   
-      
-      @Override
-      public void onStartup(ServletContext servletContext) throws ServletException {
-        
-        super.onStartup(servletContext);
-      }
-      
+public class AppWebApplicationInitializer 
+  extends AbstractAnnotationConfigDispatcherServletInitializer {
+
   @Override
   protected Class<?>[] getRootConfigClasses() {
     return new Class<?>[] {AppConfig.class, DatabaseConfig.class, MybatisConfig.class};
@@ -29,13 +19,18 @@ public class AppWebApplicationInitializer
 
   @Override
   protected String[] getServletMappings() {
-    return new String[] {"/hobbyShare/*"};
+    return new String[] {"/hobbyshare/*"};
   }
 
   @Override
   protected String getServletName() {
-    return "hobbyShare";
+    return "hobbyshare";
   }
 
-
+  @Override
+  protected Filter[] getServletFilters() {
+    return new Filter[] {
+        new CharacterEncodingFilter("UTF-8")
+        /*, new AuthFilter()*/};
+  }
 }

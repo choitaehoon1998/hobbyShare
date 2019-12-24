@@ -1,22 +1,9 @@
-package com.hobbyshare.domain;
+package com.hobbyShare.domain;
 
-import java.sql.Date;
-import lombok.Data;
+import java.io.Serializable;
 
-public @Data class Member {
-    private int memberNo;
-    private String nickName;
-    private String name;
-    private String email;
-    private String password;
-    private String tel;
-    private String post;
-    private String basicAddress;
-    private String detailAddress;
-    private int gender;
-    private Date birth;
-    private String photo;
-    private int grade;
-    private int divisionNo;
+public class Member implements Serializable {
+  private static final long serialVersionUID = 1L;
 
+  
 }

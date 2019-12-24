@@ -1,24 +1,14 @@
-package com.hobbyshare.config;
+package com.hobbyShare.config;
 
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+@ComponentScan(basePackages = "com.hobbyShare",
+    excludeFilters = {@Filter(type = FilterType.REGEX, pattern = "com.hobbyShare.web.*")})
 
-import org.springframework.context.annotation.FilterType;
-
-@SpringBootConfiguration
-@ComponentScan(
-    basePackages = "com.hobbyShare" ,
-    excludeFilters = {
-    @Filter(type = FilterType.REGEX,pattern = "com.hobbyShare.web.*")
-    }
-)
 @EnableWebMvc 
-@EnableAutoConfiguration
 public class AppConfig {
+
 }
-
-

@@ -12,7 +12,7 @@ public class Member{
   private String post;
   private String basicAddress;
   private String detailAddress;
-  private int gender;
+  private String gender;
   private Date birth;
   private String photo;
   private int grade;
@@ -79,11 +79,15 @@ public String getDetailAddress() {
 public void setDetailAddress(String detailAddress) {
 	this.detailAddress = detailAddress;
 }
-public int getGender() {
+public String getGender() {
 	return gender;
 }
 public void setGender(int gender) {
-	this.gender = gender;
+	if(gender == 0) {
+		this.gender = "남자";
+	} else {
+		this.gender = "여자";
+	}
 }
 public Date getBirth() {
 	return birth;

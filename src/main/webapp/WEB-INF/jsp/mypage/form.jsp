@@ -7,15 +7,19 @@
 </head>
 
 <style>
+body{
+	background-color: #EEE;
+}
 .mypage_member {
 	border: 1px solid;
 	padding: 10px 10px 10px 10px;
-	width: 350px;
 	position: absolute;
+	background-color: #FFF;
+	width: 350px;
 }
 
 .mypage_box {
-	padding-left: 20%;
+	padding-left: 17%;
 }
 
 .mypage_input {
@@ -40,8 +44,7 @@
 }
 
 .mypage_header{
-	border-bottom: 1px solid;
-	color: #EEE;
+	border-bottom: 1px solid #EEE;
 	margin-bottom: 10px;
 }
 
@@ -53,10 +56,11 @@
 }
 
 .mypage_conts{
-	margin-left: 400px;
+	margin-left: 380px;
 	border: 1px solid;
 	padding: 10px 10px 10px 10px;
-	width: 500px;
+	max-width: 500px;
+	background-color: #FFF;
 }
 
 .mypage_menu {
@@ -64,12 +68,21 @@
 }
 
 .mypage_menu:hover {
-	text-decoration: underline;
-	background-color: rgb(250, 250, 250);
+	transform: scale(1.2);
 }
 
 button{
-	background-color: blue;
+	border: 1px solid #B71C1C;
+	background-color: rgb(0,0,0,0);
+	color: #B71C1C;
+	border-radius: 10px;
+}
+
+label{
+	border: 1px solid #B71C1C;
+	background-color: rgb(0,0,0,0);
+	color: #B71C1C;
+	padding: 2px;
 }
 </style>
 
@@ -87,7 +100,7 @@ button{
 	    	</div>
 		</div>
 
-    	<div style="margin-left: 80px;">
+    	<div>
 			<div class="mypage_input">
 				<strong>닉네임</strong>
 				<span id="nickNameVal">${loginUser.nickName}</span>
@@ -158,8 +171,8 @@ button{
 			</div>
 	
 		</div>
-	  	<div style="text-align: center;">
-	  	  <button style="background-color: tomato;">회원탈퇴</button>
+	  	<div style="text-align: right;">
+	  	  <button style="background-color: tomato; color:white; border:white;">회원탈퇴</button>
 	  	</div>
 	</div>
 
@@ -201,9 +214,11 @@ button{
     var viewFile = document.getElementById("view_file");
     
     filePath.onchange = function() {
+    	console.log(filePath.files[0].name.substring(
+      		  filePath.files[0].name.lastIndexOf("."), filePath.files[0].name.length));
       if (filePath.files[0].name.substring(
     		  filePath.files[0].name.lastIndexOf("."), filePath.files[0].name.length)
-    		  == ".jpg" && ".jpeg" && ".png" && ".gif") {
+    		  == ".jpg" || ".jpeg" || ".png" || ".gif") {
         var reader = new FileReader();
         reader.onload = function() {
         	viewFile.setAttribute('src', event.target.result);

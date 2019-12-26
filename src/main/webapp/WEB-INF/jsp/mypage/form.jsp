@@ -7,25 +7,15 @@
 </head>
 
 <style>
-.mypage_menu {
-	float: left;
-	display: block;
-	text-align: center;
-}
-
-.mypage_menu:hover {
-	text-decoration: underline;
-	background-color: rgb(250, 250, 250);
-}
-
 .mypage_member {
 	border: 1px solid;
 	padding: 10px 10px 10px 10px;
 	width: 350px;
+	position: absolute;
 }
 
 .mypage_box {
-	padding-left: 30%;
+	padding-left: 20%;
 }
 
 .mypage_input {
@@ -46,22 +36,58 @@
 
 #filePath {
   position: absolute;
-	clip: rect(0, 0, 0, 0);
+  clip: rect(0, 0, 0, 0);
+}
+
+.mypage_header{
+	border-bottom: 1px solid;
+	color: #EEE;
+	margin-bottom: 10px;
+}
+
+.mypage_profile{
+	color: blue;
+	font-weight: bold;
+	font-size: larger;
+	margin-bottom: 10px;
+}
+
+.mypage_conts{
+	margin-left: 400px;
+	border: 1px solid;
+	padding: 10px 10px 10px 10px;
+	width: 500px;
+}
+
+.mypage_menu {
+	text-align: center;
+}
+
+.mypage_menu:hover {
+	text-decoration: underline;
+	background-color: rgb(250, 250, 250);
+}
+
+button{
+	background-color: blue;
 }
 </style>
 
 <body class="mypage_box">
 	<div class="mypage_member">
 		<div style="text-align: center;">
+			<div class="mypage_header">
+				<div class="mypage_profile">프로필</div>
+			</div>
 			<img src="/upload/join/default.png" id="view_file" class="round">
 			<div style="margin-bottom: 20px;">
 				<label for="filePath">사진선택</label>
 				<input type="file" id='filePath'>
 				<div id="infoFile"></div>
-	    </div>
+	    	</div>
 		</div>
 
-    <div style="margin-left: 80px;">
+    	<div style="margin-left: 80px;">
 			<div class="mypage_input">
 				<strong>닉네임</strong>
 				<span id="nickNameVal">${loginUser.nickName}</span>
@@ -115,7 +141,7 @@
 				<button id='changeTelBtn'>수정</button>
 				
 				<button id='updateTelBtn' class="mypage_hidden">변경</button>
-        <button id='cancelTelBtn' class="mypage_hidden">취소</button>
+        		<button id='cancelTelBtn' class="mypage_hidden">취소</button>
 				<div id="infoTel"></div>
 			</div>
 	
@@ -123,21 +149,21 @@
 				<strong>주소</strong>
 				<span id="addressVal">${loginUser.basicAddress}&nbsp;${loginUser.detailAddress}</span>
 				<input type="text" value="${loginUser.basicAddress}${loginUser.detailAddress}"
-			  id="address" class="mypage_hidden" readOnly>
+			  	id="address" class="mypage_hidden" readOnly>
 				<button id='changeAddressBtn'>수정</button>
 				
-        <button id="searchAddressBtn" class="mypage_hidden">주소검색</button>
+        		<button id="searchAddressBtn" class="mypage_hidden">주소검색</button>
 				<button id='updateAddressBtn' class="mypage_hidden">변경</button>
-        <button id='cancelAddressBtn' class="mypage_hidden">취소</button>
+        		<button id='cancelAddressBtn' class="mypage_hidden">취소</button>
 			</div>
 	
 		</div>
-  	<div style="text-align: center;">
-  	  <button style="background-color: tomato;">회원탈퇴</button>
-  	</div>
+	  	<div style="text-align: center;">
+	  	  <button style="background-color: tomato;">회원탈퇴</button>
+	  	</div>
 	</div>
 
-	<div>
+	<div class="mypage_conts">
 		<div class="mypage_menu">
 			<img src="https://t1.kakaocdn.net/withkakao/image/img_kakaocheez.png">
 			<div>
@@ -151,9 +177,7 @@
 				<strong>작성한 글</strong>
 			</div>
 		</div>
-	</div>
 
-	<div>
 		<div class="mypage_menu">
 			<img
 				src="https://t1.kakaocdn.net/withkakao/image/img_bizmessage_160330.gif">

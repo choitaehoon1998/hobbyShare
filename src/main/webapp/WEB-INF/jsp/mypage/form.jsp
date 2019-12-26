@@ -19,7 +19,7 @@ body{
 }
 
 .mypage_box {
-	padding-left: 17%;
+	padding-left: 18%;
 }
 
 .mypage_input {
@@ -61,10 +61,13 @@ body{
 	padding: 10px 10px 10px 10px;
 	max-width: 500px;
 	background-color: #FFF;
+	text-align: center;
 }
 
 .mypage_menu {
 	text-align: center;
+	padding-left: 100px;
+	padding-right: 50px;
 }
 
 .mypage_menu:hover {
@@ -176,8 +179,15 @@ label{
 	  	</div>
 	</div>
 
+<!-- 	<div style="position: absolute;"> -->
+<!-- 		<div style="color: blue; margin: 0px 0px 20px 400px ;">좋아요</div> -->
+<!-- 		<div style="color: blue; margin: 0px 0px 20px 450px ;">작성한 글</div> -->
+<!-- 		<div style="color: blue; margin: 0px 0px 20px 500px ;">주문내역</div> -->
+<!-- 		<div style="color: blue; margin: 0px 0px 20px 550px ;">매칭</div> -->
+<!-- 	</div> -->
+	
 	<div class="mypage_conts">
-		<div class="mypage_menu">
+		<div class="mypage_menu" style="position: absolute;">
 			<img src="https://t1.kakaocdn.net/withkakao/image/img_kakaocheez.png">
 			<div>
 				<strong>좋아요</strong>
@@ -191,17 +201,15 @@ label{
 			</div>
 		</div>
 
-		<div class="mypage_menu">
-			<img
-				src="https://t1.kakaocdn.net/withkakao/image/img_bizmessage_160330.gif">
+		<div class="mypage_menu" style="position: absolute;">
+			<img src="https://t1.kakaocdn.net/withkakao/image/img_bizmessage_160330.gif">
 			<div>
 				<strong>주문내역</strong>
 			</div>
 		</div>
 
 		<div class="mypage_menu">
-			<img
-				src="https://t1.kakaocdn.net/withkakao/image/img_bizmessage_160330.gif">
+			<img src="https://t1.kakaocdn.net/withkakao/image/img_bizmessage_160330.gif">
 			<div>
 				<strong>매칭</strong>
 			</div>

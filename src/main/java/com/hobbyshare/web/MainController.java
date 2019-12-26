@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
    
   @GetMapping("/main")
-  public void main() throws Exception {
+  public void main() {
     
   }
 }

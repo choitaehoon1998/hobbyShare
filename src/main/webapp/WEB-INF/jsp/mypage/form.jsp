@@ -13,13 +13,9 @@ body{
 .mypage_member {
 	border: 1px solid;
 	padding: 10px 10px 10px 10px;
-	position: absolute;
 	background-color: #FFF;
 	width: 350px;
-}
-
-.mypage_box {
-	padding-left: 18%;
+	display: inline-block;
 }
 
 .mypage_input {
@@ -56,7 +52,6 @@ body{
 }
 
 .mypage_conts{
-	margin-left: 380px;
 	border: 1px solid;
 	padding: 10px 10px 10px 10px;
 	max-width: 500px;
@@ -88,17 +83,15 @@ label{
 	padding: 2px;
 }
 </style>
-
-<body class="mypage_box">
 	<div class="mypage_member">
 		<div style="text-align: center;">
 			<div class="mypage_header">
 				<div class="mypage_profile">프로필</div>
 			</div>
-			<img src="/upload/join/default.png" id="view_file" class="round">
+			<img src="/upload/mypage/default.png" id="view_file" class="round">
 			<div style="margin-bottom: 20px;">
 				<label for="filePath">사진선택</label>
-				<input type="file" id='filePath'>
+				<input type="file" id="filePath">
 				<div id="infoFile"></div>
 	    	</div>
 		</div>
@@ -106,71 +99,65 @@ label{
     	<div>
 			<div class="mypage_input">
 				<strong>닉네임</strong>
-				<span id="nickNameVal">${loginUser.nickName}</span>
-				<input type="text" value="${loginUser.nickName}" 
-				id="nickname" class="mypage_hidden">
-				<button id='changeNickBtn'>수정</button>
-				<button id='updateNickBtn' class="mypage_hidden">변경</button>
-				<button id='cancelNickBtn' class="mypage_hidden">취소</button>
+				<span id="nickNameVal">신우2</span>
+				<input type="text" value="신우2" id="nickname" class="mypage_hidden">
+				<button id="changeNickBtn">수정</button>
+				<button id="updateNickBtn" class="mypage_hidden">변경</button>
+				<button id="cancelNickBtn" class="mypage_hidden">취소</button>
 				<div id="infoNickName"></div>
 			</div>
 	
 			<div class="mypage_input">
-				<strong>이름</strong> <span>${loginUser.name}</span>
+				<strong>이름</strong> <span>신우혁</span>
 			</div>
 	
 			<div class="mypage_input">
-				<strong>성별</strong> <span>${loginUser.gender}</span>
+				<strong>성별</strong> <span>남자</span>
 			</div>
 	
 			<div class="mypage_input">
-				<strong>생년월일</strong> <span id="birthVal">${loginUser.birth}</span>
-				<input type="text" value="${loginUser.birth}" class="mypage_hidden">
+				<strong>생년월일</strong> <span id="birthVal">1996-10-15</span>
+				<input type="text" value="1996-10-15" class="mypage_hidden">
 			</div>
 	
 			<div class="mypage_input">
-				<strong>이메일</strong> <span>${loginUser.email}</span>
+				<strong>이메일</strong> <span>s_swwhh@naver.com</span>
 			</div>
 	
 			<strong>비밀번호</strong>
-			<button id='changePwBtn'>수정</button>
+			<button id="changePwBtn">수정</button>
 			<div class="mypage_input">
-				<input type="password" placeholder="현재 비밀번호" 
-				id="nowPw" class="mypage_hidden">
-				<button id='checkPwBtn' class="mypage_hidden">확인</button>
+				<input type="password" placeholder="현재 비밀번호" id="nowPw" class="mypage_hidden">
+				<button id="checkPwBtn" class="mypage_hidden">확인</button>
 	
-				<input type="password" placeholder="변경 비밀번호" 
-				id="updatePw" class="mypage_hidden">
-			  <input type="password" placeholder="비밀번호 확인" 
-			  id="updatePwCheck" class="mypage_hidden">
+				<input type="password" placeholder="변경 비밀번호" id="updatePw" class="mypage_hidden">
+			  <input type="password" placeholder="비밀번호 확인" id="updatePwCheck" class="mypage_hidden">
 	
-				<button id='updatePwBtn' class="mypage_hidden">변경</button>
-				<button id='cancelPwBtn' class="mypage_hidden">취소</button>
+				<button id="updatePwBtn" class="mypage_hidden">변경</button>
+				<button id="cancelPwBtn" class="mypage_hidden">취소</button>
 				<div id="infoPw"></div>
 			</div>
 	
 			<div class="mypage_input">
 				<strong>전화번호</strong>
-				<span id="telVal">${loginUser.tel}</span> 
-				<input type="text" value="${loginUser.tel}" 
-				id="tel" class="mypage_hidden">
-				<button id='changeTelBtn'>수정</button>
+				<span id="telVal">1234</span> 
+				<input type="text" value="1234" id="tel" class="mypage_hidden">
+				<button id="changeTelBtn">수정</button>
 				
-				<button id='updateTelBtn' class="mypage_hidden">변경</button>
-        		<button id='cancelTelBtn' class="mypage_hidden">취소</button>
+				<button id="updateTelBtn" class="mypage_hidden">변경</button>
+        		<button id="cancelTelBtn" class="mypage_hidden">취소</button>
 				<div id="infoTel"></div>
 			</div>
 	
 			<div class="mypage_input">
 				<strong>주소</strong>
-				<span id="addressVal">${loginUser.basicAddress}&nbsp;${loginUser.detailAddress}</span>
-				<input type="text" value="${loginUser.basicAddress}${loginUser.detailAddress}"
-			  	id="address" class="mypage_hidden" readOnly>
-				<button id='changeAddressBtn'>수정</button>
+				<span id="addressVal">인천 남동구&nbsp;</span>
+				<input type="text" value="인천 남동구" id="address" class="mypage_hidden" readonly="">
+				<button id="changeAddressBtn">수정</button>
 				
         		<button id="searchAddressBtn" class="mypage_hidden">주소검색</button>
-				<button id='updateAddressBtn' class="mypage_hidden">변경</button>
-        		<button id='cancelAddressBtn' class="mypage_hidden">취소</button>
+				<button id="updateAddressBtn" class="mypage_hidden">변경</button>
+        		<button id="cancelAddressBtn" class="mypage_hidden">취소</button>
 			</div>
 	
 		</div>
@@ -178,16 +165,21 @@ label{
 	  	  <button style="background-color: tomato; color:white; border:white;">회원탈퇴</button>
 	  	</div>
 	</div>
-
 <!-- 	<div style="position: absolute;"> -->
 <!-- 		<div style="color: blue; margin: 0px 0px 20px 400px ;">좋아요</div> -->
 <!-- 		<div style="color: blue; margin: 0px 0px 20px 450px ;">작성한 글</div> -->
 <!-- 		<div style="color: blue; margin: 0px 0px 20px 500px ;">주문내역</div> -->
 <!-- 		<div style="color: blue; margin: 0px 0px 20px 550px ;">매칭</div> -->
 <!-- 	</div> -->
-	
-	<div class="mypage_conts">
-		<div class="mypage_menu" style="position: absolute;">
+
+	<div class="mypage_conts" style="
+    border-left-width: 0px;
+    border-right-width: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    display: inline-block;
+">
+		<div class="mypage_menu">
 			<img src="https://t1.kakaocdn.net/withkakao/image/img_kakaocheez.png">
 			<div>
 				<strong>좋아요</strong>
@@ -201,7 +193,7 @@ label{
 			</div>
 		</div>
 
-		<div class="mypage_menu" style="position: absolute;">
+		<div class="mypage_menu">
 			<img src="https://t1.kakaocdn.net/withkakao/image/img_bizmessage_160330.gif">
 			<div>
 				<strong>주문내역</strong>
@@ -215,7 +207,6 @@ label{
 			</div>
 		</div>
 	</div>
-	
 	<!-- 프로필 사진 -->
   <script>
     var filePath = document.getElementById("filePath");
@@ -540,9 +531,3 @@ label{
       })
     }
   </script>
-  
-<!-- 다음 우편 API -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- 제이쿼리 -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</body>

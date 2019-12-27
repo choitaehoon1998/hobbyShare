@@ -58,6 +58,8 @@ dependencies {
     // 썸네일 이미지 만들기
     compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
     
+    compile group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+    
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
 }

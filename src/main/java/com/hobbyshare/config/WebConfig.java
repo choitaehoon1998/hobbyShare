@@ -54,7 +54,7 @@ public class WebConfig implements WebMvcConfigurer {
     vr.setOrder(1); // 기존 뷰리졸버 보다 Tiles를 먼저 적용하기
     return vr;
   }
-
+		
   // Tiles 설정 정보를 다루는 객체
   @Bean
   public TilesConfigurer tilesConfigurer() {

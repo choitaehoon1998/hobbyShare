@@ -6,8 +6,6 @@
 
 <html>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
 <head>
   <title>회원가입</title>
   <style>
@@ -145,6 +143,8 @@
       </div>
     </div>
   </div>
+
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
   <script>
 
@@ -375,9 +375,6 @@
           element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
       }
   </script>
-
-
-  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 </body>
 

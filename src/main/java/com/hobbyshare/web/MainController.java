@@ -12,4 +12,8 @@ public class MainController {
   public void main() {
     
   }
+  @GetMapping("/main2")
+  public void main2() {
+    
+  }
 }

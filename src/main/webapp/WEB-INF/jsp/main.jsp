@@ -86,22 +86,14 @@ float : right ;
 margin-right : 2.6%;
 margin-bottom : 0.3%;
 }
-.navbar{
-background : #CCC5AF;
-height : auto ; 
-}
 </style>
 <head>
 <meta charset="UTF-8">
 <title>MAIN</title>
 </head>
- <div class="headerpack">
-  <header class ="hobbyShare"><img class="headerimg" src="https://d1qb2nb5cznatu.cloudfront.net/startups/i/540700-10aa3920c8496a04a8bc10bc298fedc5-medium_jpg.jpg?buster=1416624520" >Hobby Share<div class="rightsign"> <button class="sign">SIGN IN</button> <button class="sign">SIGN UP</button></div></header>
-  <nav class="navbar"><ul class="menu"><li><ul></ul></ul></nav>
- </div>
-<!-- <body class="wholebackground">
+ <body class="wholebackground">
 <div >
-  <div style="margin-top : 30px ; ">
+  <div style="margin-top : 30px ; height:auto;">
     <div class="photoleft">
       <div><img class="quatorimg forleft scale1" src="http://www.ilovepc.co.kr/news/photo/201807/19651_36119_3141.png"></div>
       <div><img class="quatorimg forleft scale2" src="https://www.agoda.com/wp-content/uploads/2019/03/Best-restaurants-in-Seoul-Fine-dining-Jungsik-Seoul-Mingles-restaurant.jpg"></div>
@@ -112,6 +104,21 @@ height : auto ;
     </div>
   </div>
 </div>
-</body> -->
-<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script>>-->
+</body>
+
+
+
+ <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+ <script>
+ $(document).on('mouseenter', '.remover', function() {
+	    $('.dept01').slideDown(1);
+	    $(this).removeClass("remover");
+	});
+	$(document).on('mouseleave', '.topMenu ', function () {
+	    if (!$(this).hasClass('remover')) {
+	        $('.dept01').slideUp(1);
+	        $(this).addClass("remover");
+	    }
+	});
+ </script>
 </html>

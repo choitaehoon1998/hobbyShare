@@ -97,7 +97,7 @@ margin-bottom : 0.3%;
     <div class="photoleft">
       <div><img class="quatorimg forleft scale1" src="http://www.ilovepc.co.kr/news/photo/201807/19651_36119_3141.png"></div>
       <div><img class="quatorimg forleft scale2" src="https://www.agoda.com/wp-content/uploads/2019/03/Best-restaurants-in-Seoul-Fine-dining-Jungsik-Seoul-Mingles-restaurant.jpg"></div>
-    </div>
+     </div>
     <div class="photoright">
       <div><img class="quatorimg forright scale3" src="http://image.moazine.com/VCover/XLarge/000370/000000044857.jpg"></div>
       <div><img class="quatorimg forright scale4" src="https://i.ytimg.com/vi/oRaPYhodiYs/maxresdefault.jpg"></div>

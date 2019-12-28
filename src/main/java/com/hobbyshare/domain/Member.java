@@ -134,7 +134,7 @@ public class Member{
   public String toString() {
     return "Member [basicAddress=" + basicAddress + ", birth=" + birth + ", detailAddress=" + detailAddress
         + ", divisionNo=" + divisionNo + ", email=" + email + ", gender=" + gender + ", grade=" + grade + ", memberNo="
-        + memberNo + ", name=" + name + ", nickName=" + nickName + ", password=" + password + ", photo=" + photo
+        + memberNo + ", name=" + name + ", nickname=" + nickname + ", password=" + password + ", photo=" + photo
         + ", post=" + post + ", tel=" + tel + "]";
   }
   

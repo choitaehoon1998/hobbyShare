@@ -33,8 +33,8 @@ public class MemberController {
  public void signup() {
 }
 
- @GetMapping("list")
- public void list() {
+ @GetMapping("result")
+ public void result() {
 }
 
 @PostMapping("add")

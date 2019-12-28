@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>수업관리시스템</title>
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 </head>
 <body>

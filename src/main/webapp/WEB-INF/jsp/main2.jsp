@@ -123,12 +123,9 @@ clear : both ;
 .remover{
 display : block ;
 }
-.footerpack{
- 
-}
 footer{
 height: 40px;
- position: absolute;
+position: absolute;
 bottom: 0;
 left: 0;
 right: 0;

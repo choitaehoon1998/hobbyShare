@@ -40,13 +40,25 @@ public class MemberController {
 @PostMapping("add")
 public String add(Member member) throws Exception {
   memberService.insert(member);
-  return "redirect:list";
+  return "redirect:result";
+}
+
+@GetMapping("nicknameCheck")
+@ResponseBody
+public int nicknameCheck(String nickname) throws Exception{
+  return memberService.nicknameCheck(nickname);
 }
 
 @GetMapping("emailCheck")
 @ResponseBody
 public int emailCheck(String email) throws Exception{
   return memberService.emailCheck(email);
+}
+
+@GetMapping("telCheck")
+@ResponseBody
+public int telCheck(String tel) throws Exception{
+  return memberService.telCheck(tel);
 }
 
 // @GetMapping("form")

@@ -82,7 +82,7 @@
         <div class="row">
           <div class="col-md-6">
             <h1> 회원가입 </h1>
-            <form action="add" method='post'>
+            <form action="add" method="post" onsubmit="return checkAll();">
               <div class="form-group">
                 <label for="nickname">닉네임</label><br>
                 <input type="text" class="form-control" name="nickname" id="nickname" placeholder="닉네임을 입력하세요">
@@ -117,7 +117,7 @@
               <div class="form-group">
                 <label for="address">주소</label><br>
                 <input type="text" class="form-control" name="post" id="post" placeholder="우편번호" style="width: 200px;" readonly>
-                <button type="button" class="post-button" onclick="daumPostcode()">우편번호 찾기</button><br>
+                <button type="button" class="post-button" id="postButton" onclick="daumPostcode()">우편번호 찾기</button><br>
                 <input type="text" class="form-control" name="basicAddress" id="basicAddress" placeholder="기본주소" readonly><br>
                 <input type="text" class="form-control" name="detailAddress" id="detailAddress"
                   placeholder="상세주소를 입력하세요">
@@ -151,7 +151,7 @@
     // 모든 공백 체크 정규식
     var empJ = /\s/g;
     // 닉네임 정규식
-    var nickJ = /^[가-힣a-z0-9]{2,8}$/;
+    var nickJ = /^[가-힣a-zA-Z0-9]{2,8}$/;
     // 이름 정규식
     var nameJ = /^[가-힣]{2,6}$/;
     // 이메일 검사 정규식
@@ -161,46 +161,48 @@
     // 휴대폰 번호 정규식
     var telJ = /^(010)([0-9]{4})([0-9]{4})$/;
 
+    // submit 체크
+    var submit_nickname = false;
+    var submit_name = false;
+    var submit_email = false;
+    var submit_password = false;
+    var submit_passwordConfirm = false;
+    var submit_tel = false;
+    var submit_address = false;
+    var submit_birth = false;
+    var submit_gender = false;
+    
+
     // 닉네임 검사
     $("#nickname").blur(function () {
-      if (nickJ.test($(this).val())) {
-        // console.log(nickJ.test($(this).val()));
-        $("#nicknameCheck").text("");
-      } else {
-        $("#nicknameCheck").text("닉네임을 확인해주세요");
-        $("#nicknameCheck").css("color", "red");
-      }
+      var nickname = $('#nickname').val();
+      $.ajax({
+        url: '${pageContext.request.contextPath}/hobbyshare/member/nicknameCheck?nickname=' + nickname,
+        type: 'get',
+        success: function (data) {
+          if (data == 1) {
+            $("#nicknameCheck").text("사용중인 닉네임입니다");
+            $("#nicknameCheck").css("color", "red");
+            submit_nickname = false;
+          } else {
+            if (nickJ.test(nickname)) {
+              $("#nicknameCheck").text("");
+              submit_nickname = true;
+            } else if (nickname == "") {
+              $('#nicknameCheck').text("닉네임을 입력해주세요");
+              $('#nicknameCheck').css('color', 'red');
+              submit_nickname = false;
+            } else {
+              $('#nicknameCheck').text("잘못된 닉네임 양식입니다");
+              $('#nicknameCheck').css('color', 'red');
+              submit_nickname = false;
+            }
+          }
+        }, error: function () {
+          console.log("실패");
+        }
+      });
     });
-    // $("#nickname").blur(function () {
-    //   var nickname = $('#nickname').val();
-    //   $.ajax({
-    //     url: '${pageContext.request.contextPath}/hobbyshare/member/nicknameCheck?nickname=' + nickname,
-    //     type: 'get',
-    //     success: function (data) {
-    //       console.log("1 = 중복o / 0 = 중복x : " + data);
-    //       if (data == 1) {
-    //         $("#nicknameCheck").text("사용중인 닉네임입니다");
-    //         $("#nicknameCheck").css("color", "red");
-    //         $("#reg_submit").attr("disabled", true);
-    //       } else {
-    //         if (nickJ.test(nickname)) {
-    //           $("#nicknameCheck").text("");
-    //           $("#reg_submit").attr("disabled", false);
-    //         } else if (nickname == "") {
-    //           $('#nicknameCheck').text("닉네임을 입력해주세요");
-    //           $('#nicknameCheck').css('color', 'red');
-    //           $("#reg_submit").attr("disabled", true);
-    //         } else {
-    //           $('#nicknameCheck').text("잘못된 닉네임 양식입니다");
-    //           $('#nicknameCheck').css('color', 'red');
-    //           $("#reg_submit").attr("disabled", true);
-    //         }
-    //       }
-    //     }, error: function () {
-    //       console.log("실패");
-    //     }
-    //   });
-    // });
 
 
     // 이름 검사
@@ -208,9 +210,11 @@
       if (nameJ.test($(this).val())) {
         // console.log(nameJ.test($(this).val()));
         $("#nameCheck").text("");
+        submit_name = true;
       } else {
         $("#nameCheck").text("이름을 확인해주세요");
         $("#nameCheck").css("color", "red");
+        submit_name = false;
       }
     });
 
@@ -221,23 +225,22 @@
         url: '${pageContext.request.contextPath}/hobbyshare/member/emailCheck?email=' + email,
         type: 'get',
         success: function (data) {
-          console.log("1 = 중복o / 0 = 중복x : " + data);
           if (data == 1) {
             $("#emailCheck").text("사용중인 이메일입니다");
             $("#emailCheck").css("color", "red");
-            $("#reg_submit").attr("disabled", true);
+            submit_email = false;
           } else {
             if (emailJ.test(email)) {
               $("#emailCheck").text("");
-              $("#reg_submit").attr("disabled", false);
+              submit_email = true;
             } else if (email == "") {
               $('#emailCheck').text("이메일를 입력해주세요");
               $('#emailCheck').css('color', 'red');
-              $("#reg_submit").attr("disabled", true);
+              submit_email = false;
             } else {
               $('#emailCheck').text("잘못된 이메일 양식입니다");
               $('#emailCheck').css('color', 'red');
-              $("#reg_submit").attr("disabled", true);
+              submit_email = false;
             }
           }
         }, error: function () {
@@ -250,9 +253,11 @@
     $("#password").blur(function () {
       if (passwordJ.test($(this).val())) {
         $("#passwordCheck").text("");
+        submit_password = true;
       } else {
         $("#passwordCheck").text("비밀번호를 확인해주세요");
         $("#passwordCheck").css("color", "red");
+        submit_password = false;
       }
     });
 
@@ -260,25 +265,144 @@
     $("#passwordConfirm").blur(function () {
       if ($("#password").val() == $("#passwordConfirm").val()) {
         $("#passwordConfirmCheck").text("");
+        submit_passwordConfirm = true;
       } else if ($("#passwordConfirm").val() == "") {
         $("#passwordConfirmCheck").text("비밀번호를 입력해주세요");
         $("#passwordConfirmCheck").css("color", "red");
+        submit_passwordConfirm = false;
       } else {
         $("#passwordConfirmCheck").text("비밀번호가 일치하지 않습니다");
         $("#passwordConfirmCheck").css("color", "red");
+        submit_passwordConfirm = false;
       }
     });
 
     // 전화번호 검사
-    $('#tel').blur(function () {
-      if (telJ.test($(this).val())) {
-        console.log(telJ.test($(this).val()));
-        $("#telCheck").text('');
+       $("#tel").blur(function () {
+      var tel = $('#tel').val();
+      $.ajax({
+        url: '${pageContext.request.contextPath}/hobbyshare/member/telCheck?tel=' + tel,
+        type: 'get',
+        success: function (data) {
+          if (data == 1) {
+            $("#telCheck").text("사용중인 전화번호입니다");
+            $("#telCheck").css("color", "red");
+            submit_tel = false;
+          } else {
+            if (telJ.test(tel)) {
+              $("#telCheck").text("");
+              submit_tel = true;
+            } else if (tel == "") {
+              $('#telCheck').text("전화번호를 입력해주세요");
+              $('#telCheck').css('color', 'red');
+              submit_tel = false;
+            } else {
+              $('#telCheck').text("잘못된 전화번호 양식입니다");
+              $('#telCheck').css('color', 'red');
+              submit_tel = false;
+            }
+          }
+        }, error: function () {
+          console.log("실패");
+        }
+      });
+    });
+
+    // 생년월일 검사
+    $("#birth").change(function () {
+      var birth = $('#birth').val();
+      if (birth != "") {
+        $("#birthCheck").text("");
+        submit_birth = true;
       } else {
-        $('#telCheck').text('전화번호를 확인해주세요 :)');
-        $('#telCheck').css('color', 'red');
+        $("#birthCheck").text("생년월일을 확인해주세요");
+        $("#birthCheck").css("color", "red");
+        submit_birth = false;
       }
     });
+
+    // 성별 검사
+    // $('input[name=gender]:radio')
+    $("#man").click(function() {
+      $("#genderCheck").text("");
+      submit_gender = true;
+    });
+    $("#woman").click(function() {
+      $("#genderCheck").text("");
+      submit_gender = true;
+    });
+
+    function checkAll() {
+      var checkCnt = 0;
+      if (submit_nickname == false) {
+        $("#nicknameCheck").text("닉네임을 입력해주세요");
+        $("#nicknameCheck").css("color", "red");
+      }
+    if (submit_nickname == true) {
+      checkCnt++;
+    }
+    if (submit_name == false) {
+      $("#nameCheck").text("이름을 입력해주세요");
+      $("#nameCheck").css("color", "red");
+    }
+    if (submit_name == true) {
+      checkCnt++;
+    }
+    if (submit_email == false) {
+      $("#emailCheck").text("이메일을 입력해주세요");
+      $("#emailCheck").css("color", "red");
+    }
+    if (submit_email == true) {
+      checkCnt++;
+    }
+    if (submit_password == false) {
+      $("#passwordCheck").text("비밀번호를 입력해주세요");
+      $("#passwordCheck").css("color", "red");
+    }
+    if (submit_password == true) {
+      checkCnt++;
+    }
+    if (submit_passwordConfirm == false) {
+      $("#passwordConfirmCheck").text("비밀번호를 입력해주세요");
+      $("#passwordConfirmCheck").css("color", "red");
+    }
+    if (submit_passwordConfirm == true) {
+      checkCnt++;
+    }
+    if (submit_tel == false) {
+      $("#telCheck").text("전화번호를 입력해주세요");
+      $("#telCheck").css("color", "red");
+    }
+    if (submit_tel == true) {
+      checkCnt++;
+    }
+    if (submit_address == false) {
+      $("#addressCheck").text("주소를 입력해주세요");
+      $("#addressCheck").css("color", "red");
+    }
+    if (submit_address == true) {
+      $("#addressCheck").text("");
+      checkCnt++;
+    }
+    if (submit_birth == false) {
+      $("#birthCheck").text("생년월일을 입력해주세요");
+      $("#birthCheck").css("color", "red");
+    }
+    if (submit_birth == true) {
+      $("#birthCheck").text("");
+      checkCnt++;
+    }
+    if (submit_gender == false) {
+      $("#genderCheck").text("성별을 입력해주세요");
+      $("#genderCheck").css("color", "red");
+    }
+    if (submit_gender == true) {
+      $("#genderCheck").text("");
+      checkCnt++;
+    }
+    console.log(checkCnt);
+    return checkCnt == 9 ? true : false; 
+    }
 
   </script>
 
@@ -339,8 +463,12 @@
                   // 우편번호와 주소 정보를 해당 필드에 넣는다.
                   document.getElementById("post").value = data.zonecode;
                   document.getElementById("basicAddress").value = addr;
+                  // 유효성 검사
+                  $("#addressCheck").text("");
+                  submit_address = true;
                   // 커서를 상세주소 필드로 이동한다.
                   document.getElementById("detailAddress").focus();
+
   
                   // iframe을 넣은 element를 안보이게 한다.
                   // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)

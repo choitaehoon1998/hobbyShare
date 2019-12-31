@@ -83,4 +83,12 @@
     select count(*) from member where email=#{email}  
   </select>
 
+  <select id="nicknameCheckOver" parameterType="String" resultType="int">
+    select count(*) from member where nickname=#{nickname}  
+  </select>
+
+  <select id="telCheckOver" parameterType="String" resultType="int">
+    select count(*) from member where tel=#{tel}  
+  </select>
+
 </mapper>

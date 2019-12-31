@@ -12,6 +12,8 @@ public interface MemberService {
   void delete(int no) throws Exception;
 
   int emailCheck(String email) throws Exception;
+  int nicknameCheck(String nickname) throws Exception;
+  int telCheck(String tel) throws Exception;
 }
 
 

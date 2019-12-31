@@ -54,5 +54,14 @@ public class DefaultMemberService implements MemberService {
     return memberDao.emailCheckOver(email);
   }
 
+  @Override
+  public int nicknameCheck(String nickname) throws Exception {
+    return memberDao.nicknameCheckOver(nickname);
+  }
+
+  @Override
+  public int telCheck(String tel) throws Exception {
+    return memberDao.telCheckOver(tel);
+  }
   
 }

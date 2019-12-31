@@ -5,7 +5,10 @@ import com.hobbyshare.domain.Member;
 
 @Service
 public interface MemberService {
-  Member get(String email, String password) throws Exception;
-  int loginCheck(String email, String password) throws Exception;
-
+  Member loginCheck(String email, String password) throws Exception;
+  String findId(Member member) throws Exception;
+  int findPw(Member member) throws Exception;
+  Member get(String email, String password);
+  void update(Member member) throws Exception;
+  Member getPassword(String email)  throws Exception;
 }

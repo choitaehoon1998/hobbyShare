@@ -40,12 +40,42 @@
 <!--     from member -->
 <!--     where email = #{email} and password = #{password} -->
 <!--   </select> -->
-
-  <select id="loginCheck" parameterType="map" resultType="int">
+  <select id="loginCheck" parameterType="map" resultMap="MemberMap">
     select 
-        COUNT(*)
-    from member
-    where email =#{email} and PASSWORD = #{password}
+    *from member
+    where email =#{email} and password = #{password}
   </select>
+  
+  <select id="findId" parameterType="Member" resultType="String">
+    select email 
+    from member 
+    where tel=#{tel} and name=#{name}
+  </select>
+  
+  <select id="findPw" parameterType="Member" resultType="int">
+   select count(*) 
+   from member 
+   where email=#{email} and name=#{name}
+  </select>
+  
+  <update id="update" parameterType="Member">
+    update member
+    <set>
+      <if test="email != null">email=#{email},</if>
+      <if test="name != null">name=#{name},</if>
+      <if test="password != null">password=password(#{password}), </if>
+      <if test="nickname != null">nickname=#{nickname},</if>
+      <if test="tel != null">tel=#{tel},</if>
+      <if test="photo != null">photo=#{photo},</if>
+      <if test="post != null">post=#{post},</if>
+      <if test="basicAddress != null">basic_address=#{basicAddress},</if>
+      <if test="detailAddress != null">detail_address=#{detailAddress}</if>
+      <if test="gender != null">gender=#{gender}</if>
+      <if test="birth != null">birth=#{birth}</if>
+      <if test="grade != null">grade=#{grade}</if>
+      <if test="divisionNo != null">division_no=#{divisionNo}</if>
+    </set>
+    where member_id = #{memberNo}
+  </update>
   
 </mapper>

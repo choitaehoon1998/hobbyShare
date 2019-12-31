@@ -11,7 +11,7 @@ body {
 	background-color: #EEEEEE;
 }
 
-.login-form {
+.findpw-form {
 	width: 360px;
 	background: #fff;
 	height: 550px;
@@ -23,7 +23,7 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-.login-form h1 {
+.findpw-form h2 {
 	text-align: center;
 	margin-bottom: 60px;
 	color: #ccc5af;
@@ -65,7 +65,7 @@ body {
 	width: 100%;
 }
 
-.logbtn {
+.findbtn {
 	display: block;
 	width: 100%;
 	height: 50px;
@@ -76,17 +76,7 @@ body {
 	outline: none;
 	cursor: pointer;
 	font-size: 15px;
-}
-
-.bottom-text {
-	margin-top: 50px;
-	text-align: center;
-	font-size: 12px;
-}
-
-.bottom-text a {
-	color: #ccc5af;
-	font-weight: 600;
+	margin-top: 20px;
 }
 
 

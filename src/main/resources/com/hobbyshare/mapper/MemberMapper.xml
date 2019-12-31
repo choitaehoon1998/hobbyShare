@@ -20,29 +20,10 @@
     <result column="grade" property="grade" />
     <result column="division_no" property="divisionNo" />
   </resultMap>
-
-<!--   <select id="findByEmailPassword" parameterType="map"  -->
-<!--     resultMap="MemberMap"> -->
-<!--     select  -->
-<!--     nickname,  -->
-<!--     name,  -->
-<!--     email,  -->
-<!--     password,  -->
-<!--     tel,  -->
-<!--     post,  -->
-<!--     basic_address,  -->
-<!--     detail_address,  -->
-<!--     gender,  -->
-<!--     birth,  -->
-<!--     photo,  -->
-<!--     grade,  -->
-<!--     division_no -->
-<!--     from member -->
-<!--     where email = #{email} and password = #{password} -->
-<!--   </select> -->
-  <select id="loginCheck" parameterType="map" resultMap="MemberMap">
-    select 
-    *from member
+  
+  <select id="login" parameterType="map" resultMap="MemberMap">
+    select *
+    from member
     where email =#{email} and password = #{password}
   </select>
   

@@ -4,7 +4,7 @@
 <html>
 <head>
   <title>hobbyshare - Login</title>
-  <link rel="stylesheet" href="/css/member/signin.css" >
+  <link rel="stylesheet" href="/css/auth/signin.css" >
 </head>
 <body>
   <div class="container">
@@ -24,10 +24,10 @@
         </div>
         <div id="pw_chk" class="vali_check"></div>
         
-        <input type="submit" class="logbtn" value="Login" onclick="signin_check();" />
+        <input type="button" class="logbtn" value="Login" onclick="signin_check();" />
         
         <div class="bottom-text">
-          <a href="findId">아이디 찾기&nbsp;&nbsp;</a>
+          <a href="findId">이메일 찾기&nbsp;&nbsp;</a>
           <a href="findPassword">비밀번호 찾기</a>&nbsp;&nbsp;
           <a href="/hobbyshare/member/form">회원가입</a>
         </div>
@@ -43,7 +43,6 @@
     
     $(".txtb input").on("blur", function(){
     	if ($(this).val() == "") {
-    		console.log("this========>", this);
 	      $(this).removeClass("focus");
     	}
     });
@@ -98,17 +97,16 @@
            type : 'post', 
            data : {email: userEmail, password: userPassword},
            success : function(result) {
-             console.log(result);
-           if (result) {
-             window.location.href = "/hobbyshare/index";
-           } else if(result == ""){
-             document.getElementById("pw_chk").innerHTML = "가입하지 않은 아이디거나, 잘못된 비밀번호입니다.";
-             $("#pw_chk").css("color", "#b71c1c");
-           }
-         },
-         error : function() {
-           console.log("비밀번호 확인 실패");
-         }
+	           if (result) {
+	             window.location.href = "/hobbyshare/index";
+	           } else if(result == ""){
+	             document.getElementById("pw_chk").innerHTML = "가입하지 않은 아이디거나, 잘못된 비밀번호입니다.";
+	             $("#pw_chk").css("color", "#b71c1c");
+	           }
+	         },
+	         error : function() {
+	           console.log("비밀번호 확인 실패");
+	         }
         });
       }
   </script>

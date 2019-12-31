@@ -15,7 +15,7 @@ body{
 	padding: 10px 10px 10px 10px;
 	background-color: #FFF;
 	width: 350px;
-	display: inline-block;
+  display: inline-block;
 }
 
 .mypage_input {
@@ -53,16 +53,14 @@ body{
 
 .mypage_conts{
 	border: 1px solid;
-	padding: 10px 10px 10px 10px;
-	max-width: 500px;
 	background-color: #FFF;
-	text-align: center;
+  max-width: 500px;
+  display: inline-block;
+  text-align: center;
 }
 
 .mypage_menu {
 	text-align: center;
-	padding-left: 100px;
-	padding-right: 50px;
 }
 
 .mypage_menu:hover {
@@ -83,89 +81,98 @@ label{
 	padding: 2px;
 }
 </style>
-	<div class="mypage_member">
-		<div style="text-align: center;">
-			<div class="mypage_header">
-				<div class="mypage_profile">프로필</div>
-			</div>
-			<img src="/upload/mypage/default.png" id="view_file" class="round">
-			<div style="margin-bottom: 20px;">
-				<label for="filePath">사진선택</label>
-				<input type="file" id="filePath">
-				<div id="infoFile"></div>
-	    	</div>
+
+<div style="margin:0 auto;">
+<div class="mypage_member">
+	<div style="text-align: center;">
+		<div class="mypage_header">
+			<div class="mypage_profile">프로필</div>
+		</div>
+		<img src="/upload/mypage/default.png" id="view_file" class="round">
+		<div style="margin-bottom: 20px;">
+			<label for="filePath">사진선택</label>
+			<input type="file" id="filePath">
+			<div id="infoFile"></div>
+    	</div>
+	</div>
+
+   	<div>
+		<div class="mypage_input">
+			<strong>닉네임</strong>
+			<span id="nickNameVal">${loginUser.nickName}</span>
+			<input type="text" value="${loginUser.nickName}" id="nickname" class="mypage_hidden">
+			<button id="changeNickBtn">수정</button>
+			<button id="updateNickBtn" class="mypage_hidden">변경</button>
+			<button id="cancelNickBtn" class="mypage_hidden">취소</button>
+			<div id="infoNickName"></div>
 		</div>
 
-    	<div>
-			<div class="mypage_input">
-				<strong>닉네임</strong>
-				<span id="nickNameVal">${loginUser.nickName}</span>
-				<input type="text" value="${loginUser.nickName}" id="nickname" class="mypage_hidden">
-				<button id="changeNickBtn">수정</button>
-				<button id="updateNickBtn" class="mypage_hidden">변경</button>
-				<button id="cancelNickBtn" class="mypage_hidden">취소</button>
-				<div id="infoNickName"></div>
-			</div>
-	
-			<div class="mypage_input">
-				<strong>이름</strong> <span>${loginUser.name}</span>
-			</div>
-	
-			<div class="mypage_input">
-				<strong>성별</strong> <span>${loginUser.gender}</span>
-			</div>
-	
-			<div class="mypage_input">
-				<strong>생년월일</strong> <span id="birthVal">${loginUser.birth}</span>
-				<input type="text" value="${loginUser.birth}" class="mypage_hidden">
-			</div>
-	
-			<div class="mypage_input">
-				<strong>이메일</strong> <span>${loginUser.email}</span>
-			</div>
-	
-			<strong>비밀번호</strong>
-			<button id="changePwBtn">수정</button>
-			<div class="mypage_input">
-				<input type="password" placeholder="현재 비밀번호" id="nowPw" class="mypage_hidden">
-				<button id="checkPwBtn" class="mypage_hidden">확인</button>
-	
-				<input type="password" placeholder="변경 비밀번호" id="updatePw" class="mypage_hidden">
-			  <input type="password" placeholder="비밀번호 확인" id="updatePwCheck" class="mypage_hidden">
-	
-				<button id="updatePwBtn" class="mypage_hidden">변경</button>
-				<button id="cancelPwBtn" class="mypage_hidden">취소</button>
-				<div id="infoPw"></div>
-			</div>
-	
-			<div class="mypage_input">
-				<strong>전화번호</strong>
-				<span id="telVal">${loginUser.tel}</span> 
-				<input type="text" value="${loginUser.tel}" id="tel" class="mypage_hidden">
-				<button id="changeTelBtn">수정</button>
-				
-				<button id="updateTelBtn" class="mypage_hidden">변경</button>
-        		<button id="cancelTelBtn" class="mypage_hidden">취소</button>
-				<div id="infoTel"></div>
-			</div>
-	
-			<div class="mypage_input">
-				<strong>주소</strong>
-				<span id="addressVal">${loginUser.basicAddress}&nbsp;${loginUser.detailAddress}</span>
-				<input type="text" value="${loginUser.basicAddress}${loginUser.detailAddress}" 
-				id="address" class="mypage_hidden" readOnly>
-				<button id="changeAddressBtn">수정</button>
-				
-        		<button id="searchAddressBtn" class="mypage_hidden">주소검색</button>
-				<button id="updateAddressBtn" class="mypage_hidden">변경</button>
-        		<button id="cancelAddressBtn" class="mypage_hidden">취소</button>
-			</div>
-	
+		<div class="mypage_input">
+			<strong>이름</strong> <span>${loginUser.name}</span>
 		</div>
-	  	<div style="text-align: right;">
-	  	  <button style="background-color: tomato; color:white; border:white;">회원탈퇴</button>
-	  	</div>
+
+		<div class="mypage_input">
+			<strong>성별</strong> <span>${loginUser.gender}</span>
+		</div>
+
+		<div class="mypage_input">
+			<strong>생년월일</strong> <span id="birthVal">${loginUser.birth}</span>
+			<input type="text" value="${loginUser.birth}" class="mypage_hidden">
+		</div>
+
+		<div class="mypage_input">
+			<strong>이메일</strong> <span>${loginUser.email}</span>
+		</div>
+
+		<strong>비밀번호</strong>
+		<button id="changePwBtn">수정</button>
+		<div class="mypage_input">
+			<input type="password" placeholder="현재 비밀번호" id="nowPw" class="mypage_hidden">
+			<button id="checkPwBtn" class="mypage_hidden">확인</button>
+
+			<input type="password" placeholder="변경 비밀번호" id="updatePw" class="mypage_hidden">
+		  <input type="password" placeholder="비밀번호 확인" id="updatePwCheck" class="mypage_hidden">
+
+			<button id="updatePwBtn" class="mypage_hidden">변경</button>
+			<button id="cancelPwBtn" class="mypage_hidden">취소</button>
+			<div id="infoPw"></div>
+		</div>
+
+		<div class="mypage_input">
+			<strong>전화번호</strong>
+			<span id="telVal">${loginUser.tel}</span> 
+			<input type="text" value="${loginUser.tel}" id="tel" class="mypage_hidden">
+			<button id="changeTelBtn">수정</button>
+			
+			<button id="updateTelBtn" class="mypage_hidden">변경</button>
+       		<button id="cancelTelBtn" class="mypage_hidden">취소</button>
+			<div id="infoTel"></div>
+		</div>
+
+		<div class="mypage_input">
+			<strong>주소</strong>
+			<span id="addressVal">${loginUser.basicAddress}&nbsp;${loginUser.detailAddress}</span>
+			<input type="text" value="${loginUser.basicAddress}${loginUser.detailAddress}" 
+			id="address" class="mypage_hidden" readOnly>
+			<button id="changeAddressBtn">수정</button>
+			
+       <button id="searchAddressBtn" class="mypage_hidden">주소검색</button>
+			<button id="updateAddressBtn" class="mypage_hidden">변경</button>
+       <button id="cancelAddressBtn" class="mypage_hidden">취소</button>
+       
+       <div id="layer" 
+       style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+         <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" 
+         style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" 
+         onclick="closeDaumPostcode()" alt="닫기 버튼">
+       </div>		
+		</div>
+
 	</div>
+  	<div style="text-align: right;">
+  	  <button style="background-color: tomato; color:white; border:white;">회원탈퇴</button>
+  	</div>
+</div>
 <!-- 	<div style="position: absolute;"> -->
 <!-- 		<div style="color: blue; margin: 0px 0px 20px 400px ;">좋아요</div> -->
 <!-- 		<div style="color: blue; margin: 0px 0px 20px 450px ;">작성한 글</div> -->
@@ -173,41 +180,41 @@ label{
 <!-- 		<div style="color: blue; margin: 0px 0px 20px 550px ;">매칭</div> -->
 <!-- 	</div> -->
 
-	<div class="mypage_conts" style="
-    border-left-width: 0px;
-    border-right-width: 0px;
-    padding-right: 0px;
-    padding-left: 0px;
-    display: inline-block;
-">
+<div class="mypage_conts">
+  <div style="display: inline-flex;">
 		<div class="mypage_menu">
 			<img src="https://t1.kakaocdn.net/withkakao/image/img_kakaocheez.png">
 			<div>
 				<strong>좋아요</strong>
 			</div>
 		</div>
-
+	
 		<div class="mypage_menu">
 			<img src="https://t1.kakaocdn.net/withkakao/image/img_kakaoorder.png">
 			<div>
 				<strong>작성한 글</strong>
 			</div>
 		</div>
+	</div>
 
+  <div style="display: inline-flex;">
 		<div class="mypage_menu">
 			<img src="https://t1.kakaocdn.net/withkakao/image/img_bizmessage_160330.gif">
 			<div>
 				<strong>주문내역</strong>
 			</div>
 		</div>
-
+	
 		<div class="mypage_menu">
 			<img src="https://t1.kakaocdn.net/withkakao/image/img_bizmessage_160330.gif">
 			<div>
 				<strong>매칭</strong>
 			</div>
-		</div>
-	</div>
+  	</div>
+  </div>
+</div>
+</div>
+
 	<!-- 프로필 사진 -->
   <script>
     var filePath = document.getElementById("filePath");
@@ -475,6 +482,13 @@ label{
 	  var searchAddressBtn = document.getElementById('searchAddressBtn');
 	  var idAddress = document.getElementById('address');
 	  
+	  // 우편번호 찾기 화면을 넣을 element
+    var addressLayer = document.getElementById('layer');
+
+    function closeDaumPostcode() {
+	    addressLayer.style.display = 'none';
+    }
+	  
 	  changeAddressBtn.onclick = function(){
 		  changeAddressBtn.style.display = 'none';
 		  cancelAddressBtn.style.display = 'inline';
@@ -505,8 +519,29 @@ label{
         	idAddress.style.display = 'inline';
           addressVal.style.display = 'none';
           updateAddressBtn.style.display = 'inline';
-        }
-      }).open();
+          addressLayer.style.display = 'none';
+        },
+        width : '100%',
+        height : '100%',
+        maxSuggestItems : 5
+      }).embed(addressLayer);
+    addressLayer.style.display = 'block';
+    // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+    initLayerPosition();
+    }
+    
+    function initLayerPosition(){
+	    var width = 400; //우편번호서비스가 들어갈 element의 width
+	    var height = 400; //우편번호서비스가 들어갈 element의 height
+	    var borderWidth = 5; //샘플에서 사용하는 border의 두께
+	    var screen = document.getElementsByClassName('mypage_member')[0];
+
+	    addressLayer.style.width = width + 'px';
+	    addressLayer.style.height = height + 'px';
+	    addressLayer.style.border = borderWidth + 'px solid';
+	    
+	    addressLayer.style.left = (screen.clientLeft + screen.clientWidth/2) + 'px';
+	    addressLayer.style.top = (screen.clientTop + screen.clientHeight/2) + 'px';
     }
     
     function updateAddressF() {

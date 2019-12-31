@@ -99,8 +99,8 @@ label{
     	<div>
 			<div class="mypage_input">
 				<strong>닉네임</strong>
-				<span id="nickNameVal">신우2</span>
-				<input type="text" value="신우2" id="nickname" class="mypage_hidden">
+				<span id="nickNameVal">${loginUser.nickName}</span>
+				<input type="text" value="${loginUser.nickName}" id="nickname" class="mypage_hidden">
 				<button id="changeNickBtn">수정</button>
 				<button id="updateNickBtn" class="mypage_hidden">변경</button>
 				<button id="cancelNickBtn" class="mypage_hidden">취소</button>
@@ -108,20 +108,20 @@ label{
 			</div>
 	
 			<div class="mypage_input">
-				<strong>이름</strong> <span>신우혁</span>
+				<strong>이름</strong> <span>${loginUser.name}</span>
 			</div>
 	
 			<div class="mypage_input">
-				<strong>성별</strong> <span>남자</span>
+				<strong>성별</strong> <span>${loginUser.gender}</span>
 			</div>
 	
 			<div class="mypage_input">
-				<strong>생년월일</strong> <span id="birthVal">1996-10-15</span>
-				<input type="text" value="1996-10-15" class="mypage_hidden">
+				<strong>생년월일</strong> <span id="birthVal">${loginUser.birth}</span>
+				<input type="text" value="${loginUser.birth}" class="mypage_hidden">
 			</div>
 	
 			<div class="mypage_input">
-				<strong>이메일</strong> <span>s_swwhh@naver.com</span>
+				<strong>이메일</strong> <span>${loginUser.email}</span>
 			</div>
 	
 			<strong>비밀번호</strong>
@@ -140,8 +140,8 @@ label{
 	
 			<div class="mypage_input">
 				<strong>전화번호</strong>
-				<span id="telVal">1234</span> 
-				<input type="text" value="1234" id="tel" class="mypage_hidden">
+				<span id="telVal">${loginUser.tel}</span> 
+				<input type="text" value="${loginUser.tel}" id="tel" class="mypage_hidden">
 				<button id="changeTelBtn">수정</button>
 				
 				<button id="updateTelBtn" class="mypage_hidden">변경</button>
@@ -151,8 +151,9 @@ label{
 	
 			<div class="mypage_input">
 				<strong>주소</strong>
-				<span id="addressVal">인천 남동구&nbsp;</span>
-				<input type="text" value="인천 남동구" id="address" class="mypage_hidden" readonly="">
+				<span id="addressVal">${loginUser.basicAddress}&nbsp;${loginUser.detailAddress}</span>
+				<input type="text" value="${loginUser.basicAddress}${loginUser.detailAddress}" 
+				id="address" class="mypage_hidden" readOnly>
 				<button id="changeAddressBtn">수정</button>
 				
         		<button id="searchAddressBtn" class="mypage_hidden">주소검색</button>

@@ -11,9 +11,9 @@ public class FashionFeedback {
 	private int viewCount;
 	private int category;
 	private Member member; 
-	private List<FashionFeedbackPhoto> fashionFeedbackPhoto ; 
+	private List<FashionFeedbackPhoto> fashionFeedbackPhoto; 
 	private List<FashionFeedbackEstimate> fashionFeedbackEstimate;
-	private List<FashionFeedbackRecommend> fashionFeedbackRecommend ; 
+	private List<FashionFeedbackRecommend> fashionFeedbackRecommend; 
 	
 	public int getFashionFeedbackNo() {
 		return fashionFeedbackNo;

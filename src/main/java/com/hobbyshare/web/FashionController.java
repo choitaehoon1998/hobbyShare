@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hobbyshare.domain.FashionFeedback;
+import com.hobbyshare.domain.FashionItem;
 import com.hobbyshare.domain.Member;
 import com.hobbyshare.service.FashionService;
 
@@ -29,27 +30,38 @@ public class FashionController {
 	}
 	@GetMapping("feedbackform")
 	public void feedbackform() throws Exception {
-		
+
 	}
 	@Transactional
 	@PostMapping("feedbackadd")
 	public void feedbackadd(HttpSession session, MultipartFile[] filepath,FashionFeedback fashionFeedback ) throws Exception {
-		 Member member =(Member)session.getAttribute("loginUser");
-		 fashionFeedback.setMemberNo(member.getMemberNo());
-		 
-	
+		Member member =(Member)session.getAttribute("loginUser");
+		fashionFeedback.setMemberNo(member.getMemberNo());
+
+
 	}
 
 	@GetMapping("shop")
-	public void shop() {
+	public void shop(Model model)  throws Exception{
+		List<FashionItem> fashionItems = fashionService.itemList();
+		System.out.println(fashionItems);
+		model.addAttribute("items",fashionItems);
 	}
-	
+
 	@GetMapping("order")
 	public void order() {
 	}
-	
+
 	@GetMapping("payment")
 	public void payment() {
-		
+
 	}
+
+	@GetMapping("itemdetail")
+	public void itemdetail(Model model) throws Exception {
+		FashionItem fashionItem = fashionService.fashionItem();
+		model.addAttribute("fashionItem",fashionItem );
+	}
+
+
 }

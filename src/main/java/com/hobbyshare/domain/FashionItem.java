@@ -1,11 +1,14 @@
 package com.hobbyshare.domain;
 
+import java.util.List;
 
 public class FashionItem {
 	private int fashionItemNo;
 	private String itemName;
 	private int price;
 	private int category;
+	private List<FashionItemPhoto> fashionItemPhoto;
+	
 	
 	public int getFashionItemNo() {
 		return fashionItemNo;
@@ -31,12 +34,18 @@ public class FashionItem {
 	public void setCategory(int category) {
 		this.category = category;
 	}
+	public List<FashionItemPhoto> getFashionItemPhoto() {
+		return fashionItemPhoto;
+	}
+	public void setFashionItemPhoto(List<FashionItemPhoto> fashionItemPhoto) {
+		this.fashionItemPhoto = fashionItemPhoto;
+	}
 	@Override
 	public String toString() {
 		return "FashionItem [fashionItemNo=" + fashionItemNo + ", itemName=" + itemName + ", price=" + price
-				+ ", category=" + category + "]";
+				+ ", category=" + category + ", fashionItemPhoto=" + fashionItemPhoto + "]";
 	}
-
+	
 	
 	
 	

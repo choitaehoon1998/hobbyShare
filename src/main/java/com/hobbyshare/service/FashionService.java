@@ -5,4 +5,5 @@ import com.hobbyshare.domain.FashionFeedback;
 
 public interface FashionService {
 	List<FashionFeedback> list()throws Exception;
+    void insert(FashionFeedback fashionFeedback) throws Exception;;
 }

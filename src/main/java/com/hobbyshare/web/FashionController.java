@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.hobbyshare.domain.FashionFeedback;
+import com.hobbyshare.domain.FashionItem;
 import com.hobbyshare.domain.Member;
 import com.hobbyshare.service.FashionService;
 
@@ -30,7 +31,7 @@ public class FashionController {
 	
 	@GetMapping("feedbackform")
 	public void feedbackform() throws Exception {
-		
+
 	}
 	
 	@Transactional
@@ -47,15 +48,26 @@ public class FashionController {
 	}
 
 	@GetMapping("shop")
-	public void shop() {
+	public void shop(Model model)  throws Exception{
+		List<FashionItem> fashionItems = fashionService.itemList();
+		System.out.println(fashionItems);
+		model.addAttribute("items",fashionItems);
 	}
-	
+
 	@GetMapping("order")
 	public void order() {
 	}
-	
+
 	@GetMapping("payment")
 	public void payment() {
-		
+
 	}
+
+	@GetMapping("itemdetail")
+	public void itemdetail(Model model) throws Exception {
+		FashionItem fashionItem = fashionService.fashionItem();
+		model.addAttribute("fashionItem",fashionItem );
+	}
+
+
 }

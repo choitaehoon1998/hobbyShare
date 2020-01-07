@@ -6,7 +6,7 @@
 
   <resultMap type="Member" id="MemberMap">
     <id column="member_id" property="memberNo"></id>
-    <result column="nickname" property="nickName" />
+    <result column="nickname" property="nickname" />
     <result column="name" property="name" />
     <result column="email" property="email" />
     <result column="password" property="password" />
@@ -58,5 +58,14 @@
     </set>
     where member_id = #{memberNo}
   </update>
+  
+  <select id="findBy" parameterType="int" resultMap="MemberMap">
+    select 
+    member_id, email, name, password, nickname, tel, photo, 
+    post, basic_address, detail_address, gender, birth, 
+    grade, division_no
+    from member
+    where member_id = #{memberNo}
+  </select>
   
 </mapper>

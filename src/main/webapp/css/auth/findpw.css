@@ -12,15 +12,15 @@ body {
 }
 
 .findpw-form {
-	width: 360px;
-	background: #fff;
-	height: 550px;
-	padding: 80px 40px;
-	border-radius: 10px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	width: 500px;
+  background: #fff;
+  height: 600px;
+  padding: 70px 40px;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .findpw-form h2 {
@@ -76,7 +76,7 @@ body {
 	outline: none;
 	cursor: pointer;
 	font-size: 15px;
-	margin-top: 20px;
+	margin-top: 50px;
 }
 
 

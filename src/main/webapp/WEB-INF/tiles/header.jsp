@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .wholebackground {
   background: #EEEEEE;
@@ -89,7 +89,13 @@ clear : both ;
       src="https://d1qb2nb5cznatu.cloudfront.net/startups/i/540700-10aa3920c8496a04a8bc10bc298fedc5-medium_jpg.jpg?buster=1416624520">Hobby
     Share
     <div class="rightsign">
-      <button class="sign">SIGN IN</button>
+    <c:if test="${empty loginUser}">
+      <button class="sign"><a href="/hobbyshare/auth/signin">SIGN IN</a></button>
+      </c:if>
+      <c:if test="${not empty loginUser}">
+      Hello! ${member.nickname}
+      <a href='/hobbyshare/auth/logout'>Sign out</a>
+      </c:if>
       <button class="sign">SIGN UP</button>
     </div>
   </header>

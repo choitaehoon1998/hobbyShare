@@ -16,4 +16,5 @@ public interface MemberService {
 
   Member login(HashMap<String, Object> params) throws Exception;
   String findId(Member member) throws Exception;
+  Member get(int no) throws Exception;
 }

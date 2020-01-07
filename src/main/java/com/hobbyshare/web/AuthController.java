@@ -2,6 +2,8 @@ package com.hobbyshare.web;
 
 import java.util.HashMap;
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +27,15 @@ public class AuthController {
   @PostMapping("login")
   @ResponseBody
   public Member login(
+      HttpServletResponse response,
       HttpSession session, 
       String email, 
       String password) throws Exception {
+    
+    Cookie cookie = new Cookie("email", email);
+    cookie.setMaxAge(60 * 60 * 24 * 15);
+    response.addCookie(cookie);
+    
     HashMap<String, Object> params = new HashMap<>();
     params.put("email", email);
     params.put("password", password);
@@ -55,6 +63,12 @@ public class AuthController {
   
   @GetMapping("findPassword")
   public void findPassword() {
+  }
+  
+  @GetMapping("logout")
+  public String logout(HttpSession session) throws Exception {
+    session.invalidate();
+    return "redirect:/hobbyshare/index";
   }
   
   

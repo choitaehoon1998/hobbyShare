@@ -98,7 +98,7 @@
            data : {email: userEmail, password: userPassword},
            success : function(result) {
 	           if (result) {
-	             window.location.href = "/hobbyshare/index";
+	             window.location.href = "/hobbyshare/soccerproduct/list";
 	           } else if(result == ""){
 	             document.getElementById("pw_chk").innerHTML = "가입하지 않은 아이디거나, 잘못된 비밀번호입니다.";
 	             $("#pw_chk").css("color", "#b71c1c");

@@ -23,25 +23,18 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findId(member);
   }
 
-//  @Override
-//  public String findId(Member member) throws Exception {
-//    return memberDao.findId(member);
-//  }
-//
+  @Override
+  public Member get(int no) throws Exception {
+    Member member = memberDao.findBy(no);
+    if (member == null) {
+      throw new Exception("해당 번호의 데이터가 없습니다!");
+    }
+    return member;
+  }
+
 //  @Override
 //  public int findPw(Member member) throws Exception {
 //    return memberDao.findPw(member);
-//  }
-//
-//  @Override
-//  public void update(Member member) throws Exception {
-//    memberDao.update(member);
-//    
-//  }
-//
-//  @Override
-//  public Member getPassword(String email) throws Exception {
-//    return memberDao.getPassword(email);
 //  }
 //  @Override
 //  public Member get(String email, String password) throws Exception {

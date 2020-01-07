@@ -17,14 +17,21 @@
   	<result column="price" property="price"/>
   	<result column="category" property="category"/>
   
+	<collection property="fashionItemOption" javaType="FashionItemOption">
+  	<id column="fashion_item_option_id" property="fashionItemOptionNo"/>
+  	<result column="fashion_item_id" property="fashionItemNo"/>
+	<result column="option_name" property="optionName"/>
+	<result column="option_size" property="optionSize"/>
+	<result column="stock" property="stock"/>
+  	</collection>
+
   	<collection property="fashionItemPhoto" javaType="FashionItemPhoto">
   	<id column="fashion_item_photo_id" property="fashionItemPhotoId"/>
   	<result column="fashion_item_id" property="fashionItemId"/>
   	<result column="file_path" property="filePath"/>
   	</collection>
-    
-  
   </resultMap>
+  
   <select id="findAll" resultMap="FashionItemMap">
     select
       fashion_item_id,
@@ -36,13 +43,23 @@
     order by fashion_item_id desc
   </select>
 	<select id="findBy" resultMap="FashionItemMap">
-	 select 
-	   item_name, 
-	   price,
-	   category
-	 from 
-	   fashion_item
-	 where fashion_item_id =#{fashionItemNo}
-	</select>
+    select
+      i.fashion_item_id,
+      i.item_name,
+      i.price,
+      i.category,
+      o.fashion_item_option_id,
+      o.option_name,
+      o.option_size,
+      o.stock,
+      p.fashion_item_photo_id,
+      p.file_path
+    from 
+      fashion_item i
+      left outer join fashion_item_option o on i.fashion_item_id = o.fashion_item_id
+      left outer join fashion_item_photo p on i.fashion_item_id = p.fashion_item_id 
+	where i.fashion_item_id =#{no}
+  </select>
+	
 
 </mapper>

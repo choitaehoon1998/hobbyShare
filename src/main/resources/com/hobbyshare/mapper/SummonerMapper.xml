@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hobbyshare.dao.SummonerDao">
+
+  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+  <resultMap type="Summoner" id="SummonerMap">
+    <id column="summoner_id" property="summonerNo"/>
+    <result column="member_id" property="memberNo"/>
+    <result column="name" property="name"/>
+    <result column="id" property="id"/>
+    <result column="summoner_level" property="summonerLevel"/>
+    <result column="profile_icon" property="profileIcon"/>
+    <result column="tier" property="tier"/>
+    <result column="rank" property="rank"/>
+    <result column="wins" property="wins"/>
+    <result column="losses" property="losses"/>
+    <result column="league_points" property="leaguePoints"/>
+  </resultMap>
+  
+  <select id="findAll" resultMap="SummonerMap">
+    select
+      summoner_id,
+      member_id,
+      name,
+      id,
+      summoner_level,
+      profile_icon,
+      tier,
+      rank,
+      wins,
+      losses,
+      league_points
+    from summoner
+    order by summoner_id desc
+  </select>
+  
+  <select id="findBy" parameterType="int" resultMap="SummonerMap">
+    select
+      summoner_id,
+      member_id,
+      name,
+      id,
+      summoner_level,
+      profile_icon,
+      tier,
+      rank,
+      wins,
+      losses,
+      league_points
+    from summoner
+    where
+      member_id=#{memberNo}
+  </select>
+  
+  <insert id="insert" parameterType="Summoner" useGeneratedKeys="true" keyColumn="summoner_id" keyProperty="summonerNo">
+    insert into summoner(
+      summoner_id,
+      member_id,
+      name,
+      id,
+      summoner_level,
+      profile_icon,
+      tier,
+      rank,
+      wins,
+      losses,
+      league_points)
+    values(#{summonerNo},#{memberNo},#{name},#{id},#{summonerLevel},#{profileIcon},#{tier},#{rank},#{wins},#{losses},#{leaguePoints}) 
+  </insert>
+  
+  <update id="update" parameterType="Summoner">
+    update summoner set
+      <!-- summoner_level=#{summonerLevel},
+      profile_icon=#{profileIcon}, -->
+      tier=#{tier},
+      rank=#{rank},
+      wins=#{wins},
+      losses=#{losses},
+      league_points=#{leaguePoints}
+    where member_id=#{memberNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from summoner
+    where summoner_id=#{summonerNo}
+  </delete>
+
+</mapper>

@@ -6,10 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.hobbyshare.dao.FashionDao;
 import com.hobbyshare.dao.FashionFeedbackphotoDao;
-import com.hobbyshare.domain.FashionFeedback;
-import com.hobbyshare.domain.FashionFeedbackPhoto;
 import com.hobbyshare.dao.FashionItemDao;
 import com.hobbyshare.domain.FashionFeedback;
+import com.hobbyshare.domain.FashionFeedbackPhoto;
 import com.hobbyshare.domain.FashionItem;
 import com.hobbyshare.service.FashionService;
 
@@ -46,8 +45,8 @@ public class DefaultFashionService implements FashionService {
 
 
 	@Override
-	public FashionItem fashionItem() throws Exception {
-		return fashionItemDao.findBy();
+	public FashionItem fashionItem(int no) throws Exception {
+		return fashionItemDao.findBy(no);
 	}
 
 

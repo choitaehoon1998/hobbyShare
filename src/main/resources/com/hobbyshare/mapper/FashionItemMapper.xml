@@ -11,7 +11,7 @@
     <result column="category" property="category"/>
   </resultMap>
 	
-  <resultMap type="FashiomItem" id="FashionItemwithPhoto">
+  <resultMap type="FashionItem" id="FashionItemwithPhoto">
   	<id column="fashion_item_id" property="fashionItemNo"/>
   	<result column="item_name" property="itemName"/>
   	<result column="price" property="price"/>
@@ -35,6 +35,14 @@
       fashion_item
     order by fashion_item_id desc
   </select>
-	
+	<select id="findBy" resultMap="FashionItemMap">
+	 select 
+	   item_name, 
+	   price,
+	   category
+	 from 
+	   fashion_item
+	 where fashion_item_id =#{fashionItemNo}
+	</select>
 
 </mapper>

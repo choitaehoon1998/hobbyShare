@@ -8,7 +8,7 @@ public class FashionItem {
 	private int price;
 	private int category;
 	private List<FashionItemPhoto> fashionItemPhoto;
-	
+	private List<FashionItemOption> fashionItemOption;
 	
 	public int getFashionItemNo() {
 		return fashionItemNo;
@@ -40,10 +40,17 @@ public class FashionItem {
 	public void setFashionItemPhoto(List<FashionItemPhoto> fashionItemPhoto) {
 		this.fashionItemPhoto = fashionItemPhoto;
 	}
+	public List<FashionItemOption> getFashionItemOption() {
+		return fashionItemOption;
+	}
+	public void setFashionItemOption(List<FashionItemOption> fashionItemOption) {
+		this.fashionItemOption = fashionItemOption;
+	}
 	@Override
 	public String toString() {
 		return "FashionItem [fashionItemNo=" + fashionItemNo + ", itemName=" + itemName + ", price=" + price
-				+ ", category=" + category + ", fashionItemPhoto=" + fashionItemPhoto + "]";
+				+ ", category=" + category + ", fashionItemPhoto=" + fashionItemPhoto + ", fashionItemOption="
+				+ fashionItemOption + "]";
 	}
 	
 	

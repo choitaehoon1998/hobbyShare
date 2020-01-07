@@ -64,10 +64,9 @@
 			</ul>
 		</div>
 		 </c:forEach> 
-
+		
 
 	</div>
-
 
 </body>
 <script src="/node_modules/popper.js/dist/popper.min.js"></script>

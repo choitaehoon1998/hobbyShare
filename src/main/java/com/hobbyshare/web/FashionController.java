@@ -64,8 +64,8 @@ public class FashionController {
 	}
 
 	@GetMapping("itemdetail")
-	public void itemdetail(Model model) throws Exception {
-		FashionItem fashionItem = fashionService.fashionItem();
+	public void itemdetail(Model model,int no) throws Exception {
+		FashionItem fashionItem = fashionService.fashionItem(no);
 		model.addAttribute("fashionItem",fashionItem );
 	}
 

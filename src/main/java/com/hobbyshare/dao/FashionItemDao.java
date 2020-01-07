@@ -7,5 +7,5 @@ import com.hobbyshare.domain.FashionItem;
 public interface FashionItemDao {
 	List<FashionItem> findAll() throws Exception;
 
-	FashionItem findBy() throws Exception;
+	FashionItem findBy(int no) throws Exception;
 }

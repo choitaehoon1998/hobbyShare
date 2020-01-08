@@ -11,4 +11,5 @@ public interface FashionService {
 	List<FashionItem> itemList() throws Exception;
 
 	FashionItem fashionItem(int no)throws Exception;
+    FashionFeedback findOne(int no) throws Exception;
 }

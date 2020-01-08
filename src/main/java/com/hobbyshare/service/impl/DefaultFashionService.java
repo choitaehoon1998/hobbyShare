@@ -1,12 +1,9 @@
 package com.hobbyshare.service.impl;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.hobbyshare.dao.FashionDao;
 import com.hobbyshare.dao.FashionFeedbackphotoDao;
 import com.hobbyshare.dao.FashionItemDao;
@@ -51,6 +48,11 @@ public class DefaultFashionService implements FashionService {
 	public FashionItem fashionItem(int no) throws Exception {
 		return fashionItemDao.findBy(no);
 	}
+
+  @Override
+  public FashionFeedback findOne(int no) throws Exception {
+    return fashionDao.findBy(no);
+  }
 
 
 

@@ -33,7 +33,9 @@ display : flow-root;
 <div class="selectpack"><button type="button" class="btn btn-secondary writebtn" onclick="location.href='./feedbackform'">새글작성</button></div>
 <c:forEach items="${feedbacks}" var="feedback">
 		<div class="card" style="width: 19.7%;">
+  <a href="/hobbyshare/fashion/feedbackdetail?no=${feedback.fashionFeedbackNo}">
   <img src="https://scontent.cdninstagram.com/v/t51.2885-15/e35/s480x480/78713641_774928196360556_5544712637498928774_n.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com&_nc_cat=100&oh=5446f1643e71ca61f0a7ea503b17e62a&oe=5EAB7FA7" class="card-img-top" alt="...">
+  </a>
   <div class="card-body">
     
     <p class="card-text">${feedback.contents}</p>

@@ -28,6 +28,12 @@ public class FashionController {
 		List<FashionFeedback> feedbacks =fashionService.list();
 		model.addAttribute("feedbacks", feedbacks);
 	}
+	@GetMapping("feedbackdetail")
+	public void feedbackdetail(Model model,int no)throws Exception{
+	  FashionFeedback feedback = fashionService.findOne(no);
+	  model.addAttribute("feedback",feedback);
+	}
+	
 	
 	@GetMapping("feedbackform")
 	public void feedbackform() throws Exception {
@@ -60,7 +66,7 @@ public class FashionController {
 
 	@GetMapping("payment")
 	public void payment() {
-
+ 
 	}
 
 	@GetMapping("itemdetail")

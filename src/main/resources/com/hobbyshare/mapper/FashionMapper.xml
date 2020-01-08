@@ -58,6 +58,23 @@
         left outer join member m on f.member_id= m.member_id
     order by fashion_feedback_id desc
   </select>
+  
+   <select id="findBy" resultMap="FashionFeedbackMap">
+    select
+      f.fashion_feedback_id,
+      f.contents,
+      f.register_date,
+      f.member_id,
+      f.view_count,
+      f.category,
+      m.nickname
+    from 
+      fashion_feedback f
+        left outer join member m on f.member_id= m.member_id
+    where f.fashion_feedback_id =#{no}
+    order by fashion_feedback_id desc
+  </select>
+  
 	
 
 </mapper>

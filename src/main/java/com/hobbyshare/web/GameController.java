@@ -1,34 +1,23 @@
 package com.hobbyshare.web;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
-import java.util.UUID;
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.hobbyshare.domain.Member;
+import com.hobbyshare.domain.GameMatching;
 import com.hobbyshare.domain.Summoner;
-import com.hobbyshare.service.MemberService;
+import com.hobbyshare.service.GameMatchingService;
 import com.hobbyshare.service.SummonerService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 
@@ -37,10 +26,13 @@ public class GameController {
 
   @Resource
   private SummonerService summonerService;
+  @Resource
+  private GameMatchingService gameMatchingService;
 
   @GetMapping("main")
   public void main(Model model) throws Exception {
     model.addAttribute("summoner", summonerService.get(1));
+    model.addAttribute("gameMatchings", gameMatchingService.list());
   }
 
   @GetMapping("summoner")
@@ -52,7 +44,7 @@ public class GameController {
 
     BufferedReader br = null;
     String SummonerName = summonerName;
-    String API_KEY = "RGAPI-83fb1d67-b08a-428a-b2a8-f40483227509";
+    String API_KEY = "RGAPI-0791cdbf-fdb4-43c4-a808-9c43290acdfc";
     // Summoner temp= null;
     try {
       String urlstr = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + SummonerName + "?api_key="
@@ -101,7 +93,7 @@ public class GameController {
     Summoner tempSummoner = summonerService.get(summoner.getMemberNo());
     BufferedReader br = null;
     String SummonerId = tempSummoner.getId();
-    String API_KEY = "RGAPI-83fb1d67-b08a-428a-b2a8-f40483227509";
+    String API_KEY = "RGAPI-0791cdbf-fdb4-43c4-a808-9c43290acdfc";
     // Summoner temp= null;
     try {
       String urlstr = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + SummonerId + "?api_key="
@@ -139,6 +131,13 @@ public class GameController {
     }
     summonerService.update(summoner);
     return "redirect:main";
+  }
+
+  @PostMapping("addGameMatching")
+  public String addGameMatching(GameMatching gameMatching) throws Exception {
+    System.out.println(gameMatching);
+  gameMatchingService.insert(gameMatching);
+  return "redirect:main";
   }
 
   // @PostMapping("add")

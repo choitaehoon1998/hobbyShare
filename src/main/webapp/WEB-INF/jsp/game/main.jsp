@@ -68,15 +68,15 @@
       vertical-align: top;
       border: 4px solid #B71C1C;
     }
-    
+
 
     .summoner-profile-icon-img {
-    display: inline-block;
-    margin-top: 0;
-    margin-left: 0;
-    width: 128px;
-    height: 128px;
-}
+      display: inline-block;
+      margin-top: 0;
+      margin-left: 0;
+      width: 128px;
+      height: 128px;
+    }
 
     .summoner-profile-level {
       position: absolute;
@@ -139,6 +139,7 @@
       background: url(/img/game/list_img.png) no-repeat 5% 50%;
       background-size: 15px;
     }
+
   </style>
 </head>
 
@@ -170,7 +171,9 @@
 
       <div class="summoner-profile-option">
         <form>
-          <select name="wantedPosition" class="summoner-profile-option-select">
+          <input type="hidden" name="summonerNo" value="1" form="gameMatchingForm">
+          <!-- 임시 서머너 번호 "1" -->
+          <select name="wantedPosition" class="summoner-profile-option-select" form="gameMatchingForm">
             <option value="all" selected> 포지션 상관없이 구함
             <option value="top"> 탑 구함
             <option value="jungle"> 정글 구함
@@ -178,12 +181,12 @@
             <option value="bot"> 원딜 구함
             <option value="support"> 서폿 구함
           </select>
-          <select name="wantedGender" class="summoner-profile-option-select">
+          <select name="wantedGender" class="summoner-profile-option-select" form="gameMatchingForm">
             <option value="all" selected> 성별 상관없이 구함
             <option value="man"> 남자만 구함
             <option value="woman"> 여자만 구함
           </select>
-          <select name="wantedVoice" class="summoner-profile-option-select">
+          <select name="wantedVoice" class="summoner-profile-option-select" form="gameMatchingForm">
             <option value="all" selected> 보이스 유무 상관없이 구함
             <option value="voiceYes"> 보이스 가능 유저만 구함
             <option value="voiceNo"> 보이스 불가능 유저만 구함
@@ -196,13 +199,38 @@
         <!-- 회원번호 value = 0 -->
         <button type="submit" class="update-button" id="updateButton">내정보 업데이트</button>
       </form>
-      <button type="button" class="duo-button" id="duoButton">듀오 신청하기</button>
+
+      <form action="addGameMatching" method="post" id="gameMatchingForm">
+        <button type="submit" class="duo-button" id="duoButton">듀오 신청하기</button>
+      </form>
     </div>
   </div>
 
   <div class="user_list_form">
     <div class="rounded_frame">
       <h1>듀오목록</h1>
+
+      <table>
+        <tr>
+          <th>매칭번호</th>
+          <th>소환사번호</th>
+          <th>요구포지션</th>
+          <th>요구성별</th>
+          <th>요구보이스</th>
+          <th>등록일시</th>
+        </tr>
+        <c:forEach items="${gameMatchings}" var="gameMatchings">
+          <tr>
+            <td>${gameMatchings.gameMatchingNo}</td>
+            <td>${gameMatchings.summonerNo}</td>
+            <td class="wantedPositionImgClass">${gameMatchings.wantedPosition}</td>
+            <td class="wantedGenderImgClass">${gameMatchings.wantedGender}</td>
+            <td class="wantedVoiceImgClass">${gameMatchings.wantedVoice}</td>
+            <td>${gameMatchings.createdDate}</td>
+          </tr>
+        </c:forEach>
+      </table>
+
     </div>
   </div>
 
@@ -210,41 +238,80 @@
 
   <script>
 
-function tierImgCheck() {
-  var summonerTier = document.getElementById("summonerTierId").value;
-  var summonerTierImg = document.getElementById("summonerTierImgId")
-  console.log(summonerTier);
-  if (summonerTier == "UNRANKED"){
-    summonerTierImg.src="/img/game/Emblem_Unranked.png";
-  }
-  if (summonerTier == "IRON"){
-    summonerTierImg.src="/img/game/Emblem_Iron.png";
-  }
-  if (summonerTier == "BRONZE"){
-    summonerTierImg.src="/img/game/Emblem_Bronze.png";
-  }
-  if (summonerTier == "SILVER"){
-    summonerTierImg.src="/img/game/Emblem_Silver.png";
-  }
-  if (summonerTier == "GOLD"){
-    summonerTierImg.src="/img/game/Emblem_Gold.png";
-  }
-  if (summonerTier == "PLATINUM"){
-    summonerTierImg.src="/img/game/Emblem_Platinum.png";
-  }
-  if (summonerTier == "DIAMOND"){
-    summonerTierImg.src="/img/game/Emblem_Diamond.png";
-  }
-  if (summonerTier == "MASTER"){
-    summonerTierImg.src="/img/game/Emblem_Master.png";
-  }
-  if (summonerTier == "GRANDMASTER"){
-    summonerTierImg.src="/img/game/Emblem_Grandmaster.png";
-  }
-  if (summonerTier == "CHALLENGER"){
-    summonerTierImg.src="/img/game/Emblem_Challenger.png";
-  }
-}
+    function tierImgCheck() {
+      var summonerTier = document.getElementById("summonerTierId").value;
+      var summonerTierImg = document.getElementById("summonerTierImgId")
+      if (summonerTier == "UNRANKED") {
+        summonerTierImg.src = "/img/game/Emblem_Unranked.png";
+      }
+      if (summonerTier == "IRON") {
+        summonerTierImg.src = "/img/game/Emblem_Iron.png";
+      }
+      if (summonerTier == "BRONZE") {
+        summonerTierImg.src = "/img/game/Emblem_Bronze.png";
+      }
+      if (summonerTier == "SILVER") {
+        summonerTierImg.src = "/img/game/Emblem_Silver.png";
+      }
+      if (summonerTier == "GOLD") {
+        summonerTierImg.src = "/img/game/Emblem_Gold.png";
+      }
+      if (summonerTier == "PLATINUM") {
+        summonerTierImg.src = "/img/game/Emblem_Platinum.png";
+      }
+      if (summonerTier == "DIAMOND") {
+        summonerTierImg.src = "/img/game/Emblem_Diamond.png";
+      }
+      if (summonerTier == "MASTER") {
+        summonerTierImg.src = "/img/game/Emblem_Master.png";
+      }
+      if (summonerTier == "GRANDMASTER") {
+        summonerTierImg.src = "/img/game/Emblem_Grandmaster.png";
+      }
+      if (summonerTier == "CHALLENGER") {
+        summonerTierImg.src = "/img/game/Emblem_Challenger.png";
+      }
+
+      var wantedPositionImg = $(".wantedPositionImgClass");
+      for (var i = 0; i < wantedPositionImg.length; i++) {
+        if (wantedPositionImg[i].innerHTML == "top") {
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Top.png'>";
+        } else if (wantedPositionImg[i].innerHTML == "jungle") {
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Jungle.png'>";
+        } else if (wantedPositionImg[i].innerHTML == "mid") {
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Mid.png'>";
+        } else if (wantedPositionImg[i].innerHTML == "bot") {
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Bot.png'>";
+        } else if (wantedPositionImg[i].innerHTML == "support") {
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Support.png'>";
+        } else if (wantedPositionImg[i].innerHTML == "all") {
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Options_All.png'>";
+        }
+      }
+
+      var wantedVoiceImg = $(".wantedVoiceImgClass");
+      for (var i = 0; i < wantedVoiceImg.length; i++) {
+        if (wantedVoiceImg[i].innerHTML == "voiceYes") {
+          wantedVoiceImg[i].innerHTML = "<img src='/img/game/Options_Voice_Yes.png'>";
+        } else if (wantedVoiceImg[i].innerHTML == "voiceNo") {
+          wantedVoiceImg[i].innerHTML = "<img src='/img/game/Options_Voice_No.png'>";
+        } else if (wantedVoiceImg[i].innerHTML == "all") {
+          wantedVoiceImg[i].innerHTML = "<img src='/img/game/Options_All.png'>";
+        }
+      }
+
+      var wantedGenderImg = $(".wantedGenderImgClass");
+      for (var i = 0; i < wantedGenderImg.length; i++) {
+        if (wantedGenderImg[i].innerHTML == "man") {
+          wantedGenderImg[i].innerHTML = "<img src='/img/game/Options_Gender_Man.png'>";
+        } else if (wantedGenderImg[i].innerHTML == "woman") {
+          wantedGenderImg[i].innerHTML = "<img src='/img/game/Options_Gender_Woman.png'>";
+        } else if (wantedGenderImg[i].innerHTML == "all") {
+          wantedGenderImg[i].innerHTML = "<img src='/img/game/Options_All.png'>";
+        }
+      }
+
+    }
 
   </script>
 

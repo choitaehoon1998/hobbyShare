@@ -1,25 +1,13 @@
 package com.hobbyshare.web;
 
-import java.io.File;
-import java.util.List;
-import java.util.UUID;
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-
-import com.hobbyshare.domain.Member;
-import com.hobbyshare.service.MemberService;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
+import com.hobbyshare.domain.Member;
+import com.hobbyshare.service.MemberService;
 
 @Controller
 
@@ -89,4 +77,7 @@ public int telCheck(String tel) throws Exception{
 //     return "redirect:/app/auth/logout";
 //   }
 
+  @GetMapping("form")
+  public void form() {
+  }
 }

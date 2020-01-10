@@ -137,5 +137,8 @@ public class Member{
         + memberNo + ", name=" + name + ", nickname=" + nickname + ", password=" + password + ", photo=" + photo
         + ", post=" + post + ", tel=" + tel + "]";
   }
+
+ 
+  
   
 }

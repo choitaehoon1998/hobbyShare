@@ -1,14 +1,13 @@
 package com.hobbyshare.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
-
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.hobbyshare.dao.MemberDao;
 import com.hobbyshare.domain.Member;
 import com.hobbyshare.service.MemberService;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -27,6 +26,16 @@ public class DefaultMemberService implements MemberService {
   @Override
   public void delete(int no) throws Exception {
     memberDao.delete(no);
+  }
+  
+  @Override
+  public Member login(HashMap<String, Object> params) throws Exception {
+    return memberDao.login(params);
+  }
+
+  @Override
+  public String findId(Member member) throws Exception {
+    return memberDao.findId(member);
   }
 
   @Override

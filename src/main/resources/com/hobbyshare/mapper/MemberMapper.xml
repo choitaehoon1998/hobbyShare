@@ -22,57 +22,10 @@
     <result column="division_no" property="divisionNo"/>
   </resultMap>
   
-  <select id="findAll" resultMap="MemberMap">
-    select
-      member_id,
-      nickname,
-      name,
-      email,
-      password,
-      tel,
-      basic_address,
-      gender,
-      birth,
-      photo,
-      grade,
-      division_no
-    from member
-    order by member_id desc
-  </select>
-  
-  <select id="findBy" parameterType="int" resultMap="MemberMap">
-    select
-      member_id,
-      nickname,
-      name,
-      email,
-      password,
-      tel,
-      post,
-      basic_address,
-      gender,
-      birth,
-      photo,
-      grade,
-      division_no
-    from member
-    where
-      member_id=#{memberNo}
-  </select>
-  
   <insert id="insert" parameterType="Member" useGeneratedKeys="true" keyColumn="member_id" keyProperty="memberNo">
     insert into member(nickname, name, email, password, tel, post, basic_address, gender, birth)
     values(#{nickname},#{name},#{email},password(#{password}),#{tel},#{post},#{basicAddress},#{gender},#{birth}) 
   </insert>
-  
-  <update id="update" parameterType="Member">
-    update member set
-      title=#{title},
-      content=#{content},
-      start_date=#{startDate},
-      end_date=#{endDate}
-    where member_id=#{memberNo}
-  </update>
   
   <delete id="delete" parameterType="int">
     delete from member
@@ -89,6 +42,53 @@
 
   <select id="telCheckOver" parameterType="String" resultType="int">
     select count(*) from member where tel=#{tel}  
+  </select>
+
+  <select id="login" parameterType="map" resultMap="MemberMap">
+    select *
+    from member
+    where email =#{email} and password = #{password}
+  </select>
+  
+  <select id="findId" parameterType="Member" resultType="String">
+    select email 
+    from member 
+    where tel=#{tel} and name=#{name}
+  </select>
+  
+  <select id="findPw" parameterType="Member" resultType="int">
+   select count(*) 
+   from member 
+   where email=#{email} and name=#{name}
+  </select>
+  
+  <update id="update" parameterType="Member">
+    update member
+    <set>
+      <if test="email != null">email=#{email},</if>
+      <if test="name != null">name=#{name},</if>
+      <if test="password != null">password=password(#{password}), </if>
+      <if test="nickname != null">nickname=#{nickname},</if>
+      <if test="tel != null">tel=#{tel},</if>
+      <if test="photo != null">photo=#{photo},</if>
+      <if test="post != null">post=#{post},</if>
+      <if test="basicAddress != null">basic_address=#{basicAddress},</if>
+      <if test="detailAddress != null">detail_address=#{detailAddress}</if>
+      <if test="gender != null">gender=#{gender}</if>
+      <if test="birth != null">birth=#{birth}</if>
+      <if test="grade != null">grade=#{grade}</if>
+      <if test="divisionNo != null">division_no=#{divisionNo}</if>
+    </set>
+    where member_id = #{memberNo}
+  </update>
+  
+  <select id="findBy" parameterType="int" resultMap="MemberMap">
+    select 
+    member_id, email, name, password, nickname, tel, photo, 
+    post, basic_address, detail_address, gender, birth, 
+    grade, division_no
+    from member
+    where member_id = #{memberNo}
   </select>
 
 </mapper>

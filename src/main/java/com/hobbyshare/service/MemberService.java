@@ -1,5 +1,6 @@
 package com.hobbyshare.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.hobbyshare.domain.Member;
@@ -14,6 +15,11 @@ public interface MemberService {
   int emailCheck(String email) throws Exception;
   int nicknameCheck(String nickname) throws Exception;
   int telCheck(String tel) throws Exception;
+
+  Member login(HashMap<String, Object> params) throws Exception;
+  String findId(Member member) throws Exception;
+  
+
 }
 
 

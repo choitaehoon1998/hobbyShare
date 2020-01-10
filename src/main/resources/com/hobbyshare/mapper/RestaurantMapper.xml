@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hobbyshare.dao.RestaurantDao">
+
+  <resultMap type="Restaurant" id="RestaurantMap">
+    <id column="restaurant_id" property="restaurantNo"/>
+    <id column="member_id" property="memberNo"/>
+    <result column="tasty_restaurant_name" property="restaurantName"/>
+  </resultMap>
+  
+  <resultMap type="RestaurantReview" id="RestaurantReviewMap">
+    <id column="restaurant_id" property="restaurantNo"/>
+    <id column="member_id" property="memberNo"/>
+    <id column="restaurant_review_id" property="memberNo"/>
+    <result column="created_date" property="createDate"/>
+    <result column="file_path" property="filePath"/>
+  </resultMap>
+  
+  <insert id="add" parameterType="Restaurant">
+    insert into
+    restaurant(member_id, tasty_restaurant_name, address, tel)
+    values
+    (#{memberNo}, #{restaurantName}, #{address}, #{tel})
+  </insert>
+  
+  <insert id="addReview" parameterType="RestaurantReview">
+    insert into
+    restaurant_review(
+    restaurant_id, member_id, rating, content, created_date, file_path)
+    values
+    (#{restaurantNo}, #{memberNo}, #{rating}, #{content}, now(), #{filePath})
+  </insert>
+  
+</mapper>

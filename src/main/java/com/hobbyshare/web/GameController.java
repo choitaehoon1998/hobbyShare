@@ -26,6 +26,7 @@ public class GameController {
 
   @Resource
   private SummonerService summonerService;
+  
   @Resource
   private GameMatchingService gameMatchingService;
 
@@ -44,7 +45,7 @@ public class GameController {
 
     BufferedReader br = null;
     String SummonerName = summonerName;
-    String API_KEY = "RGAPI-0791cdbf-fdb4-43c4-a808-9c43290acdfc";
+    String API_KEY = "RGAPI-106aae78-8444-4e9b-84c3-0286fdffd4b0";
     // Summoner temp= null;
     try {
       String urlstr = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + SummonerName + "?api_key="
@@ -93,7 +94,7 @@ public class GameController {
     Summoner tempSummoner = summonerService.get(summoner.getMemberNo());
     BufferedReader br = null;
     String SummonerId = tempSummoner.getId();
-    String API_KEY = "RGAPI-0791cdbf-fdb4-43c4-a808-9c43290acdfc";
+    String API_KEY = "RGAPI-106aae78-8444-4e9b-84c3-0286fdffd4b0";
     // Summoner temp= null;
     try {
       String urlstr = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + SummonerId + "?api_key="

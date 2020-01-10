@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hobbyshare.dao.GameMatchingDao">
+
+  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+  <resultMap type="GameMatching" id="GameMatchingMap">
+    <id column="game_matching_id" property="gameMatchingNo"/>
+    <result column="summoner_id" property="summonerNo"/>
+    <result column="wanted_position" property="wantedPosition"/>
+    <result column="wanted_gender" property="wantedGender"/>
+    <result column="wanted_voice" property="wantedVoice"/>
+    <result column="created_date" property="createdDate"/>
+  </resultMap>
+  
+  <select id="findAll" resultMap="GameMatchingMap">
+    select
+      game_matching_id,
+      summoner_id,
+      wanted_position,
+      wanted_gender,
+      wanted_voice,
+      created_date
+    from game_matching
+    order by game_matching_id desc
+  </select>
+  
+  <select id="findBy" parameterType="int" resultMap="GameMatchingMap">
+    select
+      game_matching_id,
+      summoner_id,
+      wanted_position,
+      wanted_gender,
+      wanted_voice,
+      created_date
+    from game_matching
+    where
+      game_matching_id=#{gameMatchingNo}
+  </select>
+  
+  <insert id="insert" parameterType="GameMatching" useGeneratedKeys="true" keyColumn="game_matching_id" keyProperty="gameMatchingNo">
+    insert into game_matching(
+      summoner_id,
+      wanted_position,
+      wanted_gender,
+      wanted_voice,
+      created_date)
+    values(#{summonerNo},#{wantedPosition},#{wantedGender},#{wantedVoice},now()) 
+  </insert>
+  
+  <update id="update" parameterType="GameMatching">
+    update game_matching set
+      game_matching_id,
+      summoner_id,
+      wanted_position,
+      wanted_gender,
+      wanted_voice,
+      created_date
+    where game_matching_id=#{gameMatchingNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from game_matching
+    where game_matching_id=#{gameMatchingNo}
+  </delete>
+
+</mapper>

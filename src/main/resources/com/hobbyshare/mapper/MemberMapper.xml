@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hobbyshare.dao.MemberDao">
+
+  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+  <resultMap type="Member" id="MemberMap">
+    <id column="member_id" property="memberNo"/>
+    <result column="nickname" property="nickname"/>
+    <result column="name" property="name"/>
+    <result column="email" property="email"/>
+    <result column="password" property="password"/>
+    <result column="tel" property="tel"/>
+    <result column="post" property="post"/>
+    <result column="basic_address" property="basicAddress"/>
+    <result column="detail_address_address" property="detailAddress"/>
+    <result column="gender" property="gender"/>
+    <result column="birth" property="birth"/>
+    <result column="photo" property="photo"/>
+    <result column="grade" property="grade"/>
+    <result column="division_no" property="divisionNo"/>
+  </resultMap>
+  
+  <select id="findAll" resultMap="MemberMap">
+    select
+      member_id,
+      nickname,
+      name,
+      email,
+      password,
+      tel,
+      basic_address,
+      gender,
+      birth,
+      photo,
+      grade,
+      division_no
+    from member
+    order by member_id desc
+  </select>
+  
+  <select id="findBy" parameterType="int" resultMap="MemberMap">
+    select
+      member_id,
+      nickname,
+      name,
+      email,
+      password,
+      tel,
+      post,
+      basic_address,
+      gender,
+      birth,
+      photo,
+      grade,
+      division_no
+    from member
+    where
+      member_id=#{memberNo}
+  </select>
+  
+  <insert id="insert" parameterType="Member" useGeneratedKeys="true" keyColumn="member_id" keyProperty="memberNo">
+    insert into member(nickname, name, email, password, tel, post, basic_address, gender, birth)
+    values(#{nickname},#{name},#{email},password(#{password}),#{tel},#{post},#{basicAddress},#{gender},#{birth}) 
+  </insert>
+  
+  <update id="update" parameterType="Member">
+    update member set
+      title=#{title},
+      content=#{content},
+      start_date=#{startDate},
+      end_date=#{endDate}
+    where member_id=#{memberNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from member
+    where member_id=#{memberNo}
+  </delete>
+
+  <select id="emailCheckOver" parameterType="String" resultType="int">
+    select count(*) from member where email=#{email}  
+  </select>
+
+  <select id="nicknameCheckOver" parameterType="String" resultType="int">
+    select count(*) from member where nickname=#{nickname}  
+  </select>
+
+  <select id="telCheckOver" parameterType="String" resultType="int">
+    select count(*) from member where tel=#{tel}  
+  </select>
+
+</mapper>

@@ -53,7 +53,7 @@ width: 100%;
 				<div class="right top">
 					추천수 :
 					<%--  ${feedback.contents } --%>
-					<br> 작성자 : ${feedback.member.nickName}
+					<br> 작성자 : ${feedback.member.nickname}
 				</div>
 				<hr>
 			</div>

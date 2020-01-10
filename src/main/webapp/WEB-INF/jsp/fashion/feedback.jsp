@@ -41,7 +41,7 @@ display : flow-root;
     <p class="card-text">${feedback.contents}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">작성자 : ${feedback.member.nickName} </li>
+    <li class="list-group-item">작성자 : ${feedback.member.nickname} </li>
     <li class="list-group-item">추천수 : </li>
     <li class="list-group-item">조회수 : ${feedback.viewCount}</li>
   </ul>

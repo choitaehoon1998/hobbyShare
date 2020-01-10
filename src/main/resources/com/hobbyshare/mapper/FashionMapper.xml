@@ -13,7 +13,7 @@
     <result column="category" property="category"/>
   <association property="member" javaType="Member">
 	<id column="member_id" property="memberNo" ></id>
-	<result column="nickname" property="nickName"></result>
+	<result column="nickname" property="nickname"></result>
 	</association>
   </resultMap>
 
@@ -27,7 +27,7 @@
 	
 	<association property="member" javaType="Member">
 	<id column="member_id" property="memberNo" ></id>
-	<result column="nickname" property="nickName"></result>
+	<result column="nickname" property="nickname"></result>
 	</association>
 	
 	<collection property="fashionFeedbackPhoto" javaType="FashionFeedbackPhoto">

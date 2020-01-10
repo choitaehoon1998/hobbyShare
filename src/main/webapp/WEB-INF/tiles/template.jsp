@@ -11,8 +11,8 @@
 <!-- 다음 우편 API -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body>
-  <tiles:insertAttribute name="header"/>
-  <tiles:insertAttribute name="body"/>
-  <tiles:insertAttribute name="footer"/>
+	<tiles:insertAttribute name="header"/>
+	<tiles:insertAttribute name="body"/>
+ 	<tiles:insertAttribute name="footer"/>
 </body>
 </html>

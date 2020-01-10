@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hobbyshare.dao.SoccerProductCommentDao">
+  <resultMap type="SoccerProductComment" id="CommentMap">
+    <id column="soccer_product_comment_id" property="commentNo"/>
+    <result column="soccer_product_id" property="soccerProductNo"/>
+    <result column="member_id" property="memberNo"/>
+    <result column="content" property="content"/>
+    <result column="created_date" property="createdDate"/>
+  </resultMap>
+  
+  <insert id="insert" parameterType="SoccerProductComment" useGeneratedKeys="true" keyColumn="soccer_product_comment_id" keyProperty="commentNo">
+    insert into soccer_product_comment
+    (soccer_product_id, member_id, content, created_date)
+    values
+    (#{soccerProductNo}, #{memberNo}, #{content}, now())
+  </insert>
+  
+  <select id="findAll" parameterType="map" resultMap="CommentMap">
+    select 
+      soccer_product_comment_id, soccer_product_id, member_id, content, created_date
+    from soccer_product_comment
+    where soccer_product_id=#{no}
+  </select>
+
+</mapper>

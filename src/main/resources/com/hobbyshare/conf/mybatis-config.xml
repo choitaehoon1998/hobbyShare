@@ -37,7 +37,7 @@
   <mappers>
   
     <!-- SQL 문이 저장된 파일 -->
-    <mapper resource="bitcamp/chopchop/mapper/MemberMapper.xml"/>
+    <mapper resource="com/hobbyshare/mapper/MemberMapper.xml"/>
   </mappers>
 </configuration>
 

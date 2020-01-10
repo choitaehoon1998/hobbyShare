@@ -31,6 +31,6 @@ public class AppWebApplicationInitializer
   protected Filter[] getServletFilters() {
     return new Filter[] {
         new CharacterEncodingFilter("UTF-8")
-        /*, new AuthFilter()*/};
+        };
   }
 }

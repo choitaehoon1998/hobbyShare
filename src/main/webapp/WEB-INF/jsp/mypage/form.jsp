@@ -99,8 +99,8 @@ label{
    	<div>
 		<div class="mypage_input">
 			<strong>닉네임</strong>
-			<span id="nickNameVal">${loginUser.nickName}</span>
-			<input type="text" value="${loginUser.nickName}" id="nickname" class="mypage_hidden">
+			<span id="nickNameVal">${loginUser.nickname}</span>
+			<input type="text" value="${loginUser.nickname}" id="nickname" class="mypage_hidden">
 			<button id="changeNickBtn">수정</button>
 			<button id="updateNickBtn" class="mypage_hidden">변경</button>
 			<button id="cancelNickBtn" class="mypage_hidden">취소</button>

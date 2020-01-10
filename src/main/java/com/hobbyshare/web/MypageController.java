@@ -1,8 +1,5 @@
 package com.hobbyshare.web;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +20,7 @@ public class MypageController {
 	MypageDao mypageDao;
 
 	@GetMapping("form")
-	public void form(HttpSession session) throws Exception {
-		Map<String, Object> params = new HashMap<>();
-		params.put("email", "s_swwhh@naver.com");
-		params.put("pw", 1234);
-
-		Member member = mypageDao.login(params);
-		session.setAttribute("loginUser", member);
+	public void form() throws Exception {
 	}
 
 	@PostMapping("checkNickName")
@@ -43,7 +34,7 @@ public class MypageController {
 	public int updateNickName(HttpSession session, String nickname) throws Exception {
 		Member member = new Member();
 		member.setMemberNo(((Member) session.getAttribute("loginUser")).getMemberNo());
-		member.setNickName(nickname);
+		member.setNickname(nickname);
 		return mypageDao.updateNickName(member);
 	}
 

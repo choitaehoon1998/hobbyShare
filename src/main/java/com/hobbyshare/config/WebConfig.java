@@ -39,5 +39,4 @@ public class WebConfig implements WebMvcConfigurer {
     helper.setRemoveSemicolonContent(false);
     configurer.setUrlPathHelper(helper);
   }
-
 }

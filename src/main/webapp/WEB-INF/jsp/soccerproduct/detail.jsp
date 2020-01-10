@@ -106,13 +106,28 @@
       </c:forEach>
 <%--       로그인유저:<c:out value="${member.memberNo}"></c:out> --%>
 <%--       글쓴유저:<c:out value="${soccerProduct.member.memberNo}"></c:out> --%>
+      
+      <ol class="commentList">
+        <!-- commentList-->
+      </ol>
+      <textarea id="content" name="content"></textarea>
+      <button onclick="aaa();">등록</button>
+
+
+
+
+
+
+
+
+
       <input type="hidden" id="writeId" value="${soccerProduct.member.memberNo}"/>
       <input type="hidden" id="loginId" value="${member.memberNo}">
       <form action="updateform" method="post">
-        <input type="hidden" id="no" name="no" value="${soccerProduct.soccerProductNo}"/>
+        <input type="hidden" id="soccerProductNo" name="soccerProductNo" value="${soccerProduct.soccerProductNo}"/>
 	      <div id="user-btn">
 		      <button>변경</button>
-		      <a href="delete?no=${soccerProduct.soccerProductNo}" style="border:1px solid #666666;margin:10px;padding:10px;">삭제</a>
+		      <a href="delete?no=${soccerProduct.soccerProductNo}">삭제</a>
 	      </div>
       </form>
   </div>
@@ -127,6 +142,47 @@
     		$("#user-btn").hide();
     	}
     }
+    function aaa() {
+    	var loginId = document.getElementById('loginId').value;
+    	var productNo = document.getElementById('soccerProductNo').value;
+      var content = document.getElementById('content').value;
+//     	멤버아이디 내용 등록일 상품번호 
+      console.log("로그인 id 번호=== ", loginId);
+      console.log("상품 번호=== ", productNo);
+      console.log("내용=== ", content);
+      $.ajax({
+          url: '/hobbyshare/json/soccerproductcomment/add',
+          type: 'POST',
+          data: {
+        	  memberNo: loginId,
+        	  soccerProductNo: productNo,
+        	  content: content
+        	  },
+          success: function(result){
+        	  $('#content').val('');
+        	  commentList();
+          }
+        });
+    }
+    
+    function commentList() {
+    	var productNo = document.getElementById('soccerProductNo').value;
+    	
+	    console.log('productNo----', productNo);
+	    console.log($("#soccerProductNo").val());
+	    $.ajax({
+	    	url: '/hobbyshare/json/soccerproductcomment/list?no=' + productNo,
+	    	success: function(data) {
+	    		console.log('데이터==> ', data);
+	    	}, 
+	    	error: function() {
+	    		console.log('실패');
+	    	}
+	    })
+    }
+    
   </script>
+  
+
 </body>
 </html>

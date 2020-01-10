@@ -1,5 +1,6 @@
 package com.hobbyshare.web.json;
 
+import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,39 +11,37 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.hobbyshare.domain.Member;
 import com.hobbyshare.domain.SoccerProductComment;
 import com.hobbyshare.service.MemberService;
-import com.hobbyshare.service.SoccerProductService;
+import com.hobbyshare.service.SoccerProductCommentService;
 
-@RestController("json.SoccerProductController")
-@RequestMapping("/json/soccerproduct")
+@RestController("json.SoccerProductCommentController")
+@RequestMapping("/json/soccerproductcomment")
 @SessionAttributes("loginUser")
-public class SoccerProductController {
-  
+public class SoccerProductCommentController {
+
   @Resource private MemberService memberService;
-  @Resource private SoccerProductService soccerProductService;
-  
-  @GetMapping("deletephoto")
-  public JsonResult deletephotos(int no) throws Exception{
-    try {
-      soccerProductService.deletephoto(no);
-      return new JsonResult().setState(JsonResult.SUCCESS);
-    } catch (Exception e) {
-      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
-    }
-  }
+  @Resource private SoccerProductCommentService soccerProductCommentService;
   
   @PostMapping("add")
   public JsonResult add(
-      SoccerProductComment soccerProductComment, int no, @ModelAttribute("loginUser") Member loginUser) {
+      SoccerProductComment soccerProductComment, @ModelAttribute("loginUser") Member loginUser) {
     try {
-      System.out.println(soccerProductComment);
       Member member = memberService.get(loginUser.getMemberNo());
       soccerProductComment.setMemberNo(member.getMemberNo());
-      soccerProductComment.setSoccerProductNo(no);
-//      soccerProductCommentService.insert(soccerProductComment);
+      soccerProductCommentService.insert(soccerProductComment);
       return new JsonResult().setState(JsonResult.SUCCESS);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
   }
-
+  
+  @GetMapping("list")
+  public JsonResult list() {
+    try {
+      System.out.println("들어옴?");
+      List<SoccerProductComment> comments = soccerProductCommentService.list();
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(comments);
+    } catch(Exception e ) {
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
+    }
+  }
 }

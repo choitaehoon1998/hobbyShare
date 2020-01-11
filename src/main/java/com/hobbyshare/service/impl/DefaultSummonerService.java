@@ -32,9 +32,10 @@ public class DefaultSummonerService implements SummonerService {
   @Override
   public Summoner get(int no) throws Exception {
     Summoner summoner = summonerDao.findBy(no);
-    if (summoner == null) {
-      throw new Exception("해당 번호의 데이터가 없습니다!");
-    }
+    // if (summoner == null) {
+    //   throw new Exception("해당 번호의 데이터가 없습니다!");
+    // }
+    // 없을시 summoner 등록 페이지로 이동!
     return summoner;
   }
 

@@ -162,9 +162,10 @@
             <p>솔로랭크</p>
             <b style="color: #B71C1C;">${summoner.tier} ${summoner.rank}</b>
             <span>${summoner.leaguePoints} LP</span><br>
-            <span>승률
-              <fmt:formatNumber value="${summoner.wins/(summoner.wins+summoner.losses)*100}" pattern="##.##" />%
-              (${summoner.wins}승 ${summoner.losses}패)</span>
+            <span id="winRateId">
+              <input type="hidden" id="winsId" value="${summoner.wins}">
+              <input type="hidden" id="lossesId" value="${summoner.losses}">
+            </span>
           </div>
         </div>
       </div>
@@ -311,6 +312,16 @@
         }
       }
 
+      // 랭크 승률계산
+      var winsVal = parseInt($("#winsId").val());
+      var lossesVal = parseInt($("#lossesId").val());
+      var ratingCal = parseInt(winsVal / (winsVal + lossesVal) * 100);
+      var ratingVal = ratingCal.toFixed(2);
+      if (isNaN(ratingVal)){
+        document.getElementById("winRateId").innerHTML = "랭크정보 없음"
+      } else{
+        document.getElementById("winRateId").innerHTML = "승률 " + ratingVal + "% (" + winsVal + "승 " + lossesVal + "패)";
+      }
     }
 
   </script>

@@ -26,14 +26,22 @@ public class GameController {
 
   @Resource
   private SummonerService summonerService;
-  
   @Resource
   private GameMatchingService gameMatchingService;
+  
+    @GetMapping("start")
+    public String start(Model model) throws Exception {
+      if (summonerService.get(1) == null) {
+        return "redirect:summoner";
+      } else {
+        return "redirect:main";
+      }
+    }
 
   @GetMapping("main")
   public void main(Model model) throws Exception {
-    model.addAttribute("summoner", summonerService.get(1));
-    model.addAttribute("gameMatchings", gameMatchingService.list());
+      model.addAttribute("summoner", summonerService.get(1)); // memberNo
+      model.addAttribute("gameMatchings", gameMatchingService.list());
   }
 
   @GetMapping("summoner")
@@ -45,8 +53,7 @@ public class GameController {
 
     BufferedReader br = null;
     String SummonerName = summonerName;
-    String API_KEY = "RGAPI-106aae78-8444-4e9b-84c3-0286fdffd4b0";
-    // Summoner temp= null;
+    String API_KEY = "RGAPI-fd53aff4-3899-4518-9271-1224728b6ebd";
     try {
       String urlstr = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + SummonerName + "?api_key="
           + API_KEY;
@@ -81,11 +88,6 @@ public class GameController {
       System.out.println(e.getMessage());
     }
     summonerService.insert(summoner);
-    // model.addAttribute("summoner", temp);
-    // model.addAttribute("imgURL",
-    // "http://ddragon.leagueoflegends.com/cdn/9.16.1/img/profileicon/" +
-    // temp.getProfileIconId() + ".png");
-    // return "result";
     return "redirect:main";
   }
 
@@ -94,8 +96,7 @@ public class GameController {
     Summoner tempSummoner = summonerService.get(summoner.getMemberNo());
     BufferedReader br = null;
     String SummonerId = tempSummoner.getId();
-    String API_KEY = "RGAPI-106aae78-8444-4e9b-84c3-0286fdffd4b0";
-    // Summoner temp= null;
+    String API_KEY = "RGAPI-fd53aff4-3899-4518-9271-1224728b6ebd";
     try {
       String urlstr = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + SummonerId + "?api_key="
           + API_KEY;

@@ -9,4 +9,6 @@ public interface SummonerDao {
   Summoner findBy(int no) throws Exception;
   int update(Summoner summoner) throws Exception;
   int delete(int no) throws Exception;
+
+  int summonerNameCheckOver(String summonerName) throws Exception;
 }

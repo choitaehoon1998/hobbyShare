@@ -102,8 +102,8 @@ clear : both ;
 			src="https://d1qb2nb5cznatu.cloudfront.net/startups/i/540700-10aa3920c8496a04a8bc10bc298fedc5-medium_jpg.jpg?buster=1416624520">Hobby
 		Share
 		<div class="rightsign">
-			<button class="sign">SIGN IN</button>
-			<button class="sign">SIGN UP</button>
+			<button class="sign" onclick="location.href='/hobbyshare/auth/signin' ">SIGN IN</button>
+			<button class="sign" onclick="location.href='/hobbyshare/member/signup' ">SIGN UP</button>
 		</div>
 	</header>
 	<div class="topMenu navbar remover">
@@ -116,13 +116,8 @@ clear : both ;
 					<li id="subMenu">맛집 4</li>
 					<li id="subMenu">맛집 5</li>
 				</ul></li>
-			<li><span>게임</span>
+			<li><a href="/hobbyshare/game/start">게임</a>
 				<ul class="dept01">
-					<li id="subMenu">겜 1</li>
-					<li id="subMenu">겜 2</li>
-					<li id="subMenu">겜 3</li>
-					<li id="subMenu">겜 4</li>
-					<li id="subMenu">겜 5</li>
 				</ul></li>
 			<li><span>축구</span>
 				<ul class="dept01">

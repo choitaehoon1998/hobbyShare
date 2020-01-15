@@ -9,6 +9,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hobbyshare.domain.GameMatching;
+import com.hobbyshare.domain.Member;
 import com.hobbyshare.domain.Summoner;
 import com.hobbyshare.service.GameMatchingService;
 import com.hobbyshare.service.SummonerService;
@@ -16,12 +17,17 @@ import com.hobbyshare.service.SummonerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 
 @RequestMapping("/game")
+@SessionAttributes("loginUser")
+
 public class GameController {
 
   @Resource
@@ -30,8 +36,8 @@ public class GameController {
   private GameMatchingService gameMatchingService;
   
     @GetMapping("start")
-    public String start(Model model) throws Exception {
-      if (summonerService.get(1) == null) {
+    public String start(@ModelAttribute("loginUser") Member loginUser, Model model) throws Exception {
+      if (summonerService.get(loginUser.getMemberNo()) == null) {
         return "redirect:summoner";
       } else {
         return "redirect:main";
@@ -39,13 +45,16 @@ public class GameController {
     }
 
   @GetMapping("main")
-  public void main(Model model) throws Exception {
-      model.addAttribute("summoner", summonerService.get(1)); // memberNo
+  public void main(@ModelAttribute("loginUser") Member loginUser, Model model) throws Exception {
+      model.addAttribute("summoner", summonerService.get(loginUser.getMemberNo()));
       model.addAttribute("gameMatchings", gameMatchingService.list());
   }
 
   @GetMapping("summoner")
-  public void summoner() {
+  public void summoner(@ModelAttribute("loginUser") Member loginUser, Model model) {
+    Member member = new Member();
+    member.setMemberNo(loginUser.getMemberNo());
+    model.addAttribute("member", member);
   }
 
   @PostMapping("addSummoner")
@@ -53,7 +62,7 @@ public class GameController {
 
     BufferedReader br = null;
     String SummonerName = summonerName;
-    String API_KEY = "RGAPI-fd53aff4-3899-4518-9271-1224728b6ebd";
+    String API_KEY = "RGAPI-d1469fe1-4792-4d5b-954c-7f873dc183ca";
     try {
       String urlstr = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + SummonerName + "?api_key="
           + API_KEY;
@@ -86,6 +95,8 @@ public class GameController {
 
     } catch (Exception e) {
       System.out.println(e.getMessage());
+      System.out.println("존재하지 않는 소환사 이름");
+      return "redirect:summoner";
     }
     summonerService.insert(summoner);
     return "redirect:main";
@@ -96,7 +107,7 @@ public class GameController {
     Summoner tempSummoner = summonerService.get(summoner.getMemberNo());
     BufferedReader br = null;
     String SummonerId = tempSummoner.getId();
-    String API_KEY = "RGAPI-fd53aff4-3899-4518-9271-1224728b6ebd";
+    String API_KEY = "RGAPI-d1469fe1-4792-4d5b-954c-7f873dc183ca";
     try {
       String urlstr = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + SummonerId + "?api_key="
           + API_KEY;
@@ -141,6 +152,12 @@ public class GameController {
   gameMatchingService.insert(gameMatching);
   return "redirect:main";
   }
+
+  @GetMapping("summonerNameCheck")
+@ResponseBody
+public int summonerNameCheck(String summonerName) throws Exception{
+  return summonerService.summonerNameCheck(summonerName);
+}
 
   // @PostMapping("add")
   // public String add(Member member) throws Exception {

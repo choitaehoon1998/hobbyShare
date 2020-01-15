@@ -50,4 +50,9 @@ public class DefaultSummonerService implements SummonerService {
     summonerDao.update(summoner);
   }
 
+  @Override
+  public int summonerNameCheck(String summonerName) throws Exception {
+    return summonerDao.summonerNameCheckOver(summonerName);
+  }
+
 }

@@ -172,8 +172,7 @@
 
       <div class="summoner-profile-option">
         <form>
-          <input type="hidden" name="summonerNo" value="1" form="gameMatchingForm">
-          <!-- 임시 서머너 번호 "1" -->
+          <input type="hidden" name="summonerNo" value="${summoner.summonerNo}" form="gameMatchingForm">
           <select name="wantedPosition" class="summoner-profile-option-select" form="gameMatchingForm">
             <option value="all" selected> 포지션 상관없이 구함
             <option value="top"> 탑 구함
@@ -196,8 +195,7 @@
       </div>
 
       <form action="updateSummoner" method="post">
-        <input type="hidden" class="form-control" name="memberNo" id="memberNo" value="1">
-        <!-- 회원번호 value = 0 -->
+        <input type="hidden" class="form-control" name="memberNo" id="memberNo" value="${summoner.memberNo}">
         <button type="submit" class="update-button" id="updateButton">내정보 업데이트</button>
       </form>
 

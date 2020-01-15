@@ -87,4 +87,8 @@
     where summoner_id=#{summonerNo}
   </delete>
 
+  <select id="summonerNameCheckOver" parameterType="String" resultType="int">
+    select count(*) from summoner where name=#{name}  
+  </select>
+
 </mapper>

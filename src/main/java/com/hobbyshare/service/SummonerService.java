@@ -10,6 +10,8 @@ public interface SummonerService {
   void insert(Summoner summoner) throws Exception;
   void update(Summoner summoner) throws Exception;
   void delete(int no) throws Exception;
+
+  int summonerNameCheck(String summonerName) throws Exception;
 }
 
 

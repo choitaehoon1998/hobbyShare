@@ -15,13 +15,13 @@
 }
 </Style>
 
-<form method="post" action="add">
+<form method="post" action="add" enctype="multipart/form-data">
 	<div>맛집 등록</div>
 	<img src="/upload/mypage/default.png" 
 	id="view_file" name="view_file" class="round">
 	<div style="margin-bottom: 20px;">
 		<label for="filePath">사진선택</label>
-		<input type="file" id="filePath">
+		<input type="file" id="filePath" name="filePath">
 		<div id="infoFile"></div>
 	</div>
 	매장명<div><input type="text" name="name" required></div>

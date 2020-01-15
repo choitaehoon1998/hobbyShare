@@ -33,4 +33,17 @@
     (#{restaurantNo}, #{memberNo}, #{rating}, #{content}, now(), #{filePath})
   </insert>
   
+  <select id="reviewList" resultMap="RestaurantMap">
+    select a.tasty_restaurant_name, a.address, a.tel, 
+    b.rating, b.file_path 
+    from restaurant as a 
+    join restaurant_review as b 
+    on a.restaurant_id = b.restaurant_id
+  </select>
+  
+  <select id="reviewCheck" parameterType="Restaurant" resultMap="RestaurantMap">
+    select *from restaurant 
+    where address = #{address} and tel = #{tel}
+  </select>
+  
 </mapper>

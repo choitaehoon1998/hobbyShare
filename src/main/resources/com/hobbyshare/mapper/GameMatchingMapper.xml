@@ -13,16 +13,48 @@
     <result column="wanted_voice" property="wantedVoice"/>
     <result column="created_date" property="createdDate"/>
   </resultMap>
+
+   <resultMap type="GameMatching" id="findWithGameMatchingMap">
+    <id column="game_matching_id" property="gameMatchingNo"/>
+    <result column="summoner_id" property="summonerNo"/>
+    <result column="wanted_position" property="wantedPosition"/>
+    <result column="wanted_gender" property="wantedGender"/>
+    <result column="wanted_voice" property="wantedVoice"/>
+    <result column="created_date" property="createdDate"/>
+
+    <collection property="summoners" ofType="Summoner">
+      <id column="summoner_id" property="summonerNo"/>
+    <result column="member_id" property="memberNo"/>
+    <result column="name" property="name"/>
+    <result column="id" property="id"/>
+    <result column="summoner_level" property="summonerLevel"/>
+    <result column="profile_icon" property="profileIcon"/>
+    <result column="tier" property="tier"/>
+    <result column="rank" property="rank"/>
+    <result column="wins" property="wins"/>
+    <result column="losses" property="losses"/>
+    <result column="league_points" property="leaguePoints"/>
+    </collection>
+    </resultMap>
   
-  <select id="findAll" resultMap="GameMatchingMap">
+  <select id="findAll" resultMap="findWithGameMatchingMap">
     select
-      game_matching_id,
-      summoner_id,
-      wanted_position,
-      wanted_gender,
-      wanted_voice,
-      created_date
-    from game_matching
+      g.game_matching_id,
+      g.summoner_id,
+      g.wanted_position,
+      g.wanted_gender,
+      g.wanted_voice,
+      g.created_date,
+      s.name,
+      s.summoner_level,
+      s.profile_icon,
+      s.tier,
+      s.rank,
+      s.wins,
+      s.losses,
+      s.league_points
+    from game_matching g
+    left join summoner s on g.summoner_id=s.summoner_id
     order by game_matching_id desc
   </select>
   

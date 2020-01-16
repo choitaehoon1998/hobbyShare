@@ -1,6 +1,7 @@
 package com.hobbyshare.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class GameMatching {
   private int gameMatchingNo;
@@ -10,6 +11,8 @@ public class GameMatching {
   private String wantedVoice;
   private Date createdDate;
 
+  private List<Summoner> summoners;
+  
   public int getGameMatchingNo() {
     return gameMatchingNo;
   }
@@ -57,12 +60,20 @@ public class GameMatching {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+  
+    public List<Summoner> getSummoners() {
+      return summoners;
+    }
+  
+    public void setSummoners(List<Summoner> summoners) {
+      this.summoners = summoners;
+    }
 
   @Override
   public String toString() {
     return "GameMatching [createdDate=" + createdDate + ", gameMatchingNo=" + gameMatchingNo + ", summonerNo="
-        + summonerNo + ", wantedGender=" + wantedGender + ", wantedPosition=" + wantedPosition + ", wantedVoice="
-        + wantedVoice + "]";
+        + summonerNo + ", summoners=" + summoners + ", wantedGender=" + wantedGender + ", wantedPosition="
+        + wantedPosition + ", wantedVoice=" + wantedVoice + "]";
   }
 
 }

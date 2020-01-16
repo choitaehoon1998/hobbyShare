@@ -140,6 +140,26 @@
       background-size: 15px;
     }
 
+    table
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td
+{
+    text-align: center;
+}
+tr:nth-child(even)
+{
+    background-color: #f2f2f2;
+}
+th
+{
+    background-color: #B71C1C;
+    padding: 8px;
+    color: white;
+}
+
   </style>
 </head>
 
@@ -189,7 +209,7 @@
           <select name="wantedVoice" class="summoner-profile-option-select" form="gameMatchingForm">
             <option value="all" selected> 보이스 유무 상관없이 구함
             <option value="voiceYes"> 보이스 가능 유저만 구함
-            <option value="voiceNo"> 보이스 불가능 유저만 구함
+            <option value="voiceNo"> 보이스 불가 유저만 구함
           </select>
         </form>
       </div>
@@ -211,21 +231,45 @@
 
       <table>
         <tr>
-          <th>매칭번호</th>
-          <th>소환사번호</th>
-          <th>요구포지션</th>
-          <th>요구성별</th>
-          <th>요구보이스</th>
+          <th colspan="2">소환사명</th>
+          <th colspan="2">티어</th>
+          <th>포지션</th>
+          <th>성별</th>
+          <th>보이스</th>
           <th>등록일시</th>
         </tr>
         <c:forEach items="${gameMatchings}" var="gameMatchings">
           <tr>
-            <td>${gameMatchings.gameMatchingNo}</td>
-            <td>${gameMatchings.summonerNo}</td>
+            <td style="width: 50px">
+              <c:forEach items="${gameMatchings.summoners}" var="summoner">
+                <img src="${summoner.profileIcon}" width="44" height="44" style="border: 3px solid #B71C1C";>
+              </c:forEach>
+            </td>
+            <td style="text-align: left">
+              <c:forEach items="${gameMatchings.summoners}" var="summoner">
+                <b>${summoner.name}</b><br>
+                Lv.${summoner.summonerLevel}
+              </c:forEach>
+            </td>
+            <td  style="width: 50px">
+              <c:forEach items="${gameMatchings.summoners}" var="summoner">
+                <b class="tierImgClass">${summoner.tier}</b>
+              </c:forEach>
+            </td>
+            <td style="text-align: left">
+              <c:forEach items="${gameMatchings.summoners}" var="summoner">
+                <b class="tierTempClass">${summoner.tier} ${summoner.rank}</b><br>
+                ${summoner.wins}승 ${summoner.losses}패
+              </c:forEach>
+            </td>
             <td class="wantedPositionImgClass">${gameMatchings.wantedPosition}</td>
             <td class="wantedGenderImgClass">${gameMatchings.wantedGender}</td>
             <td class="wantedVoiceImgClass">${gameMatchings.wantedVoice}</td>
-            <td>${gameMatchings.createdDate}</td>
+            <td>
+              ${gameMatchings.createdDate}<br>
+              <fmt:formatDate value="${gameMatchings.createdDate}" type="time"></fmt:formatDate>
+
+            </td>
           </tr>
         </c:forEach>
       </table>
@@ -271,42 +315,83 @@
         summonerTierImg.src = "/img/game/Emblem_Challenger.png";
       }
 
+      var tierImg = $(".tierImgClass");
+      for (var i = 0; i < tierImg.length; i++) {
+        if (tierImg[i].innerHTML == "") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Unranked.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "IRON") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Iron.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "BRONZE") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Bronze.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "SILVER") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Silver.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "GOLD") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Gold.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "PLATINUM") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Platinum.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "DIAMOND") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Diamond.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "MASTER") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Master.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "GRANDMASTER") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Grandmaster.png' width='50' height='50px'>";
+        }
+        if (tierImg[i].innerHTML == "CHALLENGER") {
+          tierImg[i].innerHTML = "<img src='/img/game/Emblem_Challenger.png' width='50' height='50px'>";
+        }
+      }
+
       var wantedPositionImg = $(".wantedPositionImgClass");
       for (var i = 0; i < wantedPositionImg.length; i++) {
         if (wantedPositionImg[i].innerHTML == "top") {
-          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Top.png'>";
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Top.png' width='30' height='30px'>";
         } else if (wantedPositionImg[i].innerHTML == "jungle") {
-          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Jungle.png'>";
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Jungle.png' width='30' height='30px'>";
         } else if (wantedPositionImg[i].innerHTML == "mid") {
-          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Mid.png'>";
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Mid.png' width='30' height='30px'>";
         } else if (wantedPositionImg[i].innerHTML == "bot") {
-          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Bot.png'>";
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Bot.png' width='30' height='30px'>";
         } else if (wantedPositionImg[i].innerHTML == "support") {
-          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Support.png'>";
+          wantedPositionImg[i].innerHTML = "<img src='/img/game/Position_Grandmaster-Support.png' width='30' height='30px'>";
         } else if (wantedPositionImg[i].innerHTML == "all") {
-          wantedPositionImg[i].innerHTML = "<img src='/img/game/Options_All.png'>";
+          wantedPositionImg[i].innerHTML = "<span style='color:gray'>상관없음</span>";
         }
       }
 
       var wantedVoiceImg = $(".wantedVoiceImgClass");
       for (var i = 0; i < wantedVoiceImg.length; i++) {
         if (wantedVoiceImg[i].innerHTML == "voiceYes") {
-          wantedVoiceImg[i].innerHTML = "<img src='/img/game/Options_Voice_Yes.png'>";
+          wantedVoiceImg[i].innerHTML = "<span style='color:green'>가능</span>";
         } else if (wantedVoiceImg[i].innerHTML == "voiceNo") {
-          wantedVoiceImg[i].innerHTML = "<img src='/img/game/Options_Voice_No.png'>";
+          wantedVoiceImg[i].innerHTML = "<span style='color:orange'>불가</span>";
         } else if (wantedVoiceImg[i].innerHTML == "all") {
-          wantedVoiceImg[i].innerHTML = "<img src='/img/game/Options_All.png'>";
+          wantedVoiceImg[i].innerHTML = "<span style='color:gray'>상관없음</span>";
         }
       }
 
       var wantedGenderImg = $(".wantedGenderImgClass");
       for (var i = 0; i < wantedGenderImg.length; i++) {
         if (wantedGenderImg[i].innerHTML == "man") {
-          wantedGenderImg[i].innerHTML = "<img src='/img/game/Options_Gender_Man.png'>";
+          wantedGenderImg[i].innerHTML = "<span style='color:skyblue'>남자</span>";
         } else if (wantedGenderImg[i].innerHTML == "woman") {
-          wantedGenderImg[i].innerHTML = "<img src='/img/game/Options_Gender_Woman.png'>";
+          wantedGenderImg[i].innerHTML = "<span style='color:pink'>여자</span>";
         } else if (wantedGenderImg[i].innerHTML == "all") {
-          wantedGenderImg[i].innerHTML = "<img src='/img/game/Options_All.png'>";
+          wantedGenderImg[i].innerHTML = "<span style='color:gray'>상관없음</span>";
+        }
+      }
+
+      var tierTemp = $(".tierTempClass");
+      for (var i = 0; i < tierTemp.length; i++) {
+        if (tierTemp[i].innerHTML == " ") {
+          tierTemp[i].innerHTML = "UNRANKED";
         }
       }
 
@@ -315,9 +400,9 @@
       var lossesVal = parseInt($("#lossesId").val());
       var ratingCal = parseInt(winsVal / (winsVal + lossesVal) * 100);
       var ratingVal = ratingCal.toFixed(2);
-      if (isNaN(ratingVal)){
+      if (isNaN(ratingVal)) {
         document.getElementById("winRateId").innerHTML = "랭크정보 없음"
-      } else{
+      } else {
         document.getElementById("winRateId").innerHTML = "승률 " + ratingVal + "% (" + winsVal + "승 " + lossesVal + "패)";
       }
     }

@@ -1,5 +1,7 @@
 package com.hobbyshare.domain;
 
+import java.util.List;
+
 public class Summoner {
     private int summonerNo;
     private int memberNo;
